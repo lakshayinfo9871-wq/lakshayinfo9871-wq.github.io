@@ -7,6 +7,74 @@
 
 <style>
 
+  /* PORTFOLIO */
+.portfolio{
+padding:120px 8%;
+}
+
+.portfolio-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+margin-top:50px;
+}
+
+.portfolio-item{
+position:relative;
+overflow:hidden;
+display:block;
+border-radius:10px;
+}
+
+.portfolio-item img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:0.5s;
+}
+
+.portfolio-item:hover img{
+transform:scale(1.1);
+}
+
+/* overlay */
+.overlay{
+position:absolute;
+bottom:0;
+left:0;
+width:100%;
+padding:20px;
+background:linear-gradient(transparent, rgba(0,0,0,0.9));
+opacity:0;
+transition:0.4s;
+}
+
+.portfolio-item:hover .overlay{
+opacity:1;
+}
+
+.overlay h3{
+margin-bottom:5px;
+}
+
+.overlay p{
+font-size:14px;
+color:#aaa;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+.portfolio-grid{
+grid-template-columns:1fr 1fr;
+}
+}
+
+@media(max-width:500px){
+.portfolio-grid{
+grid-template-columns:1fr;
+}
+}
+
   .bg-glow{
 position:fixed;
 width:600px;
@@ -23,6 +91,48 @@ z-index:-1;
 padding:140px 8%;
 background:#0d0d0d;
 }
+
+  <!-- PORTFOLIO -->
+<section class="portfolio" id="work">
+
+<div class="container">
+
+<h2 class="section-title">Selected Work</h2>
+<p class="section-subtitle">
+A glimpse of projects I’ve built for real businesses
+</p>
+
+<div class="portfolio-grid">
+
+<a href="https://anayanaturals.com/" target="_blank" class="portfolio-item">
+<img src="https://via.placeholder.com/600x400" alt="">
+<div class="overlay">
+<h3>Anaya Naturals</h3>
+<p>Ecommerce Website</p>
+</div>
+</a>
+
+<a href="https://dermacells.in/" target="_blank" class="portfolio-item">
+<img src="https://via.placeholder.com/600x400" alt="">
+<div class="overlay">
+<h3>Dermacells</h3>
+<p>Brand Website</p>
+</div>
+</a>
+
+<a href="https://glamcos.store/" target="_blank" class="portfolio-item">
+<img src="https://via.placeholder.com/600x400" alt="">
+<div class="overlay">
+<h3>Glamcos Store</h3>
+<p>Ecommerce Store</p>
+</div>
+</a>
+
+</div>
+
+</div>
+
+</section>
 
 .container{
 max-width:1100px;

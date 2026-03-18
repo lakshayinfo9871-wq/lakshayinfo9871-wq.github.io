@@ -1,71 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Lakshay Kumar | Portfolio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lakshay Kumar | Growth Portfolio</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
-    }
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial;}
+body{background:#0a0a0a;color:#fff;line-height:1.6;}
 
-    body {
-      background: #0a0a0a;
-      color: #fff;
-      overflow-x: hidden;
-    }
+section{padding:80px 10%;}
 
-    .hero {
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 20px;
-    }
+h1,h2{font-weight:700;}
+h1{font-size:56px;}
+h2{font-size:36px;margin-bottom:20px;}
 
-    h1 {
-      font-size: 56px;
-      font-weight: 700;
-      margin-bottom: 20px;
-    }
+p{color:#aaa;}
 
-    p {
-      font-size: 18px;
-      color: #aaa;
-    }
+.btn{
+display:inline-block;
+margin-top:20px;
+padding:12px 28px;
+border:1px solid #fff;
+text-decoration:none;
+color:#fff;
+transition:0.3s;
+}
+.btn:hover{background:#fff;color:#000;}
 
-    .btn {
-      display: inline-block;
-      margin-top: 30px;
-      padding: 12px 28px;
-      border: 1px solid #fff;
-      color: #fff;
-      text-decoration: none;
-      transition: 0.3s;
-    }
+.hero{
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+}
 
-    .btn:hover {
-      background: #fff;
-      color: #000;
-    }
-  </style>
+/* services */
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+margin-top:40px;
+}
+
+.card{
+border:1px solid #222;
+padding:20px;
+transition:0.3s;
+}
+.card:hover{
+border-color:#fff;
+transform:translateY(-5px);
+}
+
+/* portfolio */
+.portfolio a{
+display:block;
+margin:10px 0;
+color:#fff;
+text-decoration:none;
+border-bottom:1px solid #333;
+padding:10px 0;
+}
+
+/* results */
+.results{
+display:flex;
+gap:40px;
+flex-wrap:wrap;
+margin-top:30px;
+}
+.result-box{
+font-size:24px;
+font-weight:bold;
+}
+
+/* footer */
+.footer{
+text-align:center;
+padding:40px;
+border-top:1px solid #222;
+}
+</style>
+
 </head>
 
 <body>
 
+<!-- HERO -->
 <section class="hero">
-  <div>
-    <h1>I Build Websites That Generate Sales</h1>
-    <p>Helping brands grow with design, development & performance marketing</p>
-    
-    <a href="https://wa.me/917217797821" class="btn">Let's Talk</a>
-  </div>
+<div>
+<h1>I Build Systems That Generate Sales</h1>
+<p>Websites, Ads & Automation to grow your business</p>
+<a href="https://wa.me/917217797821" class="btn">Work With Me</a>
+</div>
 </section>
+
+<!-- SERVICES -->
+<section>
+<h2>What I Do</h2>
+<div class="grid">
+
+<div class="card">
+<h3>Website Development</h3>
+<p>High-converting websites & ecommerce stores.</p>
+</div>
+
+<div class="card">
+<h3>Meta Ads</h3>
+<p>Lead generation & sales campaigns with ROI focus.</p>
+</div>
+
+<div class="card">
+<h3>App Development</h3>
+<p>Custom apps for business automation & growth.</p>
+</div>
+
+<div class="card">
+<h3>Automation & AI</h3>
+<p>Save time using smart systems & AI workflows.</p>
+</div>
+
+</div>
+</section>
+
+<!-- PORTFOLIO -->
+<section class="portfolio">
+<h2>My Work</h2>
+
+<a href="https://anayanaturals.com/" target="_blank">Anaya Naturals</a>
+<a href="https://dermacells.in/" target="_blank">Dermacells</a>
+<a href="https://glamcos.store/" target="_blank">Glamcos Store</a>
+
+</section>
+
+<!-- RESULTS -->
+<section>
+<h2>Results</h2>
+<div class="results">
+
+<div class="result-box">₹3L+ Revenue Generated</div>
+<div class="result-box">3x ROAS Campaigns</div>
+<div class="result-box">Multiple Brand Builds</div>
+
+</div>
+</section>
+
+<!-- ABOUT -->
+<section>
+<h2>About Me</h2>
+<p>
+I help brands grow using a combination of design, development, marketing and automation.
+Instead of just building websites, I build complete systems that generate leads and sales.
+</p>
+</section>
+
+<!-- CTA -->
+<section style="text-align:center;">
+<h2>Want to Grow Your Business?</h2>
+<a href="https://wa.me/917217797821" class="btn">Let's Talk</a>
+</section>
+
+<!-- FOOTER -->
+<div class="footer">
+© 2026 Lakshay Kumar
+</div>
 
 </body>
 </html>

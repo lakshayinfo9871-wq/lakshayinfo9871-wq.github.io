@@ -3,847 +3,1473 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lakshay Kumar | Growth Systems for Cosmetics & Ecommerce Brands</title>
-<meta name="description" content="I help cosmetics & ecommerce brands generate leads and sales with high-converting websites and low-CPL Meta Ads. ₹19–21 CPL proven. No calls — fast execution.">
+<title>Lakshay Kumar — Systems Builder</title>
+<meta name="description" content="I build websites, apps, lead generation systems and automation for businesses. Fast delivery. No calls. WhatsApp & email only.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Geist+Mono:wght@300;400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
+/* ═══════════════════════════════════════════
+   ROOT & RESET
+═══════════════════════════════════════════ */
 :root {
-  --bg: #07070f;
-  --surface: #0d0d18;
-  --surface2: #12121f;
-  --border: rgba(255,255,255,0.06);
-  --border2: rgba(79,70,229,0.4);
-  --accent: #4F46E5;
-  --accent-light: #6366f1;
-  --cyan: #06b6d4;
-  --green: #10d98a;
-  --text: #e2e2f0;
-  --muted: #52526a;
-  --muted2: #7070a0;
-  --white: #fff;
-  --gradient: linear-gradient(135deg, #4F46E5, #06b6d4);
-  --gradient2: linear-gradient(135deg, #4F46E5 0%, #818cf8 50%, #06b6d4 100%);
+  --bg:       #050507;
+  --bg1:      #08080d;
+  --bg2:      #0c0c14;
+  --bg3:      #10101a;
+  --blue:     #2563EB;
+  --blue-l:   #3b82f6;
+  --cyan:     #22D3EE;
+  --purple:   #7C3AED;
+  --purple-l: #a855f7;
+  --green:    #10b981;
+  --red:      #ef4444;
+  --text:     #e2e2f0;
+  --muted:    #4a4a6a;
+  --muted2:   #7070a0;
+  --border:   rgba(255,255,255,0.06);
+  --border2:  rgba(37,99,235,0.35);
+  --glow-b:   rgba(37,99,235,0.22);
+  --glow-c:   rgba(34,211,238,0.15);
+  --glow-p:   rgba(124,58,237,0.2);
+  --font-head:'Syne', sans-serif;
+  --font-body:'DM Sans', sans-serif;
+  --font-mono:'Geist Mono', monospace;
+  --r:  8px;
+  --r2: 14px;
+  --r3: 20px;
 }
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior:smooth; }
-body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; overflow-x:hidden; cursor:none; }
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+img{max-width:100%;display:block;}
+a{text-decoration:none;color:inherit;}
+button{font-family:inherit;cursor:pointer;border:none;background:none;}
+input,select,textarea{font-family:inherit;}
 
-/* ── CUSTOM CURSOR ── */
-.cursor { width:7px; height:7px; background:#fff; border-radius:50%; position:fixed; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); mix-blend-mode:difference; }
-.cursor-ring { width:32px; height:32px; border:1.5px solid rgba(79,70,229,.55); border-radius:50%; position:fixed; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:all .14s ease; }
-.cursor-ring.hov { width:56px; height:56px; border-color:rgba(6,182,212,.7); background:rgba(79,70,229,.06); }
-@media(pointer:coarse){ .cursor,.cursor-ring{display:none;} body{cursor:auto;} }
-
-/* ── BACKGROUND CANVAS ── */
-#bg-canvas { position:fixed; inset:0; z-index:0; pointer-events:none; }
-.grain { position:fixed; inset:0; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E"); background-size:180px; z-index:1; pointer-events:none; opacity:.4; }
-
-/* ── HEADER ── */
-header { position:fixed; top:0; width:100%; display:flex; justify-content:space-between; align-items:center; padding:22px 6%; z-index:200; transition:all .4s; }
-header.scrolled { background:rgba(7,7,15,.92); backdrop-filter:blur(24px); border-bottom:1px solid var(--border); padding:15px 6%; }
-.logo { font-family:'Syne',sans-serif; font-weight:800; font-size:20px; color:#fff; text-decoration:none; letter-spacing:-.5px; }
-.logo em { color:var(--accent-light); font-style:normal; }
-nav { display:flex; gap:28px; align-items:center; }
-nav a { font-size:13px; font-weight:500; color:var(--muted2); text-decoration:none; transition:color .3s; letter-spacing:.2px; }
-nav a:hover { color:#fff; }
-.nav-cta { background:var(--accent); color:#fff!important; padding:9px 22px; border-radius:6px; font-weight:600!important; transition:all .3s!important; letter-spacing:.2px; }
-.nav-cta:hover { background:var(--accent-light)!important; transform:translateY(-1px); box-shadow:0 8px 28px rgba(79,70,229,.4)!important; }
-.hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; z-index:300; }
-.hamburger span { width:22px; height:1.5px; background:#fff; display:block; transition:all .3s; }
-.hamburger.active span:nth-child(1) { transform:rotate(45deg) translate(4.5px,4.5px); }
-.hamburger.active span:nth-child(2) { opacity:0; }
-.hamburger.active span:nth-child(3) { transform:rotate(-45deg) translate(4.5px,-4.5px); }
-.mobile-nav { position:fixed; inset:0; background:rgba(7,7,15,.97); backdrop-filter:blur(24px); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:40px; z-index:250; opacity:0; pointer-events:none; transition:opacity .4s; }
-.mobile-nav.active { opacity:1; pointer-events:all; }
-.mobile-nav a { font-family:'Syne',sans-serif; font-size:28px; font-weight:700; color:var(--text); text-decoration:none; transition:color .3s; }
-.mobile-nav a:hover { color:var(--accent-light); }
-
-/* ── HERO ── */
-.hero { min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; padding:130px 6% 90px; position:relative; z-index:2; }
-.hero-inner { max-width:860px; }
-.hero-badge { display:inline-flex; align-items:center; gap:9px; border:1px solid var(--border2); background:rgba(79,70,229,.08); backdrop-filter:blur(12px); padding:7px 18px; border-radius:4px; font-size:11.5px; letter-spacing:1.5px; color:var(--accent-light); text-transform:uppercase; font-weight:600; margin-bottom:32px; opacity:0; animation:fadeUp .8s .2s ease forwards; }
-.dot { width:6px; height:6px; background:var(--green); border-radius:50%; box-shadow:0 0 8px var(--green); animation:blink 2s infinite; }
-@keyframes blink { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:.5;transform:scale(1.6);} }
-.hero h1 { font-family:'Syne',sans-serif; font-size:clamp(44px,7.5vw,90px); font-weight:800; line-height:.96; letter-spacing:-3px; color:#fff; opacity:0; animation:fadeUp .8s .38s ease forwards; }
-.hero h1 .line { display:block; }
-.accent-word { background:var(--gradient2); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
-.hero-sub { margin:26px auto 0; font-size:17px; line-height:1.72; color:var(--muted2); max-width:540px; opacity:0; animation:fadeUp .8s .56s ease forwards; }
-.hero-tags { margin-top:22px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap; opacity:0; animation:fadeUp .8s .7s ease forwards; }
-.hero-tag { font-size:12px; color:var(--muted); background:rgba(255,255,255,.04); border:1px solid var(--border); border-radius:4px; padding:5px 12px; letter-spacing:.5px; }
-.hero-actions { margin-top:36px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap; opacity:0; animation:fadeUp .8s .85s ease forwards; }
-.btn-primary { display:inline-flex; align-items:center; gap:9px; background:var(--accent); color:#fff; padding:15px 32px; border-radius:6px; font-weight:600; font-size:14.5px; text-decoration:none; transition:all .3s; position:relative; overflow:hidden; letter-spacing:.2px; }
-.btn-primary::after { content:''; position:absolute; inset:0; background:rgba(255,255,255,.1); opacity:0; transition:opacity .3s; }
-.btn-primary:hover::after { opacity:1; }
-.btn-primary:hover { transform:translateY(-2px); box-shadow:0 18px 48px rgba(79,70,229,.45); }
-.btn-secondary { display:inline-flex; align-items:center; gap:9px; border:1px solid var(--border2); color:var(--accent-light); padding:15px 32px; border-radius:6px; font-weight:500; font-size:14px; text-decoration:none; transition:all .3s; background:rgba(79,70,229,.06); letter-spacing:.2px; }
-.btn-secondary:hover { border-color:var(--accent-light); color:#fff; background:rgba(79,70,229,.12); transform:translateY(-2px); }
-.btn-ghost { display:inline-flex; align-items:center; gap:9px; border:1px solid var(--border); color:var(--muted2); padding:12px 26px; border-radius:6px; font-weight:500; font-size:14px; text-decoration:none; transition:all .3s; }
-.btn-ghost:hover { border-color:rgba(255,255,255,.2); color:#fff; transform:translateY(-2px); }
-.hero-meta { margin-top:52px; display:flex; gap:36px; justify-content:center; flex-wrap:wrap; opacity:0; animation:fadeUp .8s 1s ease forwards; }
-.hero-meta-item { display:flex; align-items:center; gap:8px; font-size:12.5px; color:var(--muted); }
-.hero-meta-icon { width:6px; height:6px; border-radius:50%; background:var(--green); }
-
-/* ── MARQUEE ── */
-.marquee-section { position:relative; z-index:2; border-top:1px solid var(--border); border-bottom:1px solid var(--border); overflow:hidden; padding:15px 0; background:rgba(255,255,255,.01); }
-.marquee-track { display:flex; animation:marquee 24s linear infinite; white-space:nowrap; }
-.marquee-item { display:inline-flex; align-items:center; gap:22px; font-family:'Syne',sans-serif; font-size:11px; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; color:var(--muted); padding:0 38px; }
-.marquee-sep { color:var(--accent); }
-@keyframes marquee { from{transform:translateX(0);} to{transform:translateX(-50%);} }
-
-/* ── STATS ── */
-.stats-strip { position:relative; z-index:2; display:grid; grid-template-columns:repeat(4,1fr); }
-.stat-item { border:1px solid var(--border); border-collapse:collapse; background:var(--bg); padding:48px 28px; text-align:center; transition:background .3s; position:relative; overflow:hidden; }
-.stat-item::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at center,rgba(79,70,229,.08),transparent 70%); opacity:0; transition:opacity .4s; }
-.stat-item:hover::before { opacity:1; }
-.stat-item:hover { background:rgba(79,70,229,.04); }
-.stat-num { font-family:'Syne',sans-serif; font-size:52px; font-weight:800; color:#fff; letter-spacing:-3px; line-height:1; margin-bottom:10px; }
-.stat-num .hl { color:var(--accent-light); }
-.stat-label { font-size:12.5px; color:var(--muted); letter-spacing:.3px; }
-
-/* ── COMMON SECTION ── */
-section { position:relative; z-index:2; }
-.section-label { display:inline-block; font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:var(--accent-light); margin-bottom:16px; }
-.section-title { font-family:'Syne',sans-serif; font-size:clamp(30px,4.2vw,54px); font-weight:800; line-height:1.05; letter-spacing:-1.8px; color:#fff; margin-bottom:16px; }
-.section-sub { font-size:15px; color:var(--muted2); line-height:1.75; max-width:500px; }
-
-/* ── SYSTEMS (SERVICES) ── */
-.systems { padding:110px 6%; }
-.systems-header { margin-bottom:60px; }
-.systems-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--border); border:1px solid var(--border); }
-.system-card { background:var(--bg); padding:52px 46px; transition:background .4s; position:relative; overflow:hidden; }
-.system-card::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 0% 0%,rgba(79,70,229,.12),transparent 65%); opacity:0; transition:opacity .5s; }
-.system-card:hover::before { opacity:1; }
-.system-card:hover { background:rgba(79,70,229,.04); }
-.sys-num { font-family:'Syne',sans-serif; font-size:11px; font-weight:700; letter-spacing:3px; color:var(--muted); margin-bottom:24px; display:block; }
-.sys-icon { width:48px; height:48px; border:1px solid var(--border2); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:20px; margin-bottom:24px; transition:all .35s; background:rgba(79,70,229,.06); }
-.system-card:hover .sys-icon { border-color:var(--accent-light); background:rgba(79,70,229,.18); transform:scale(1.08) rotate(-4deg); }
-.system-card h3 { font-family:'Syne',sans-serif; font-size:20px; font-weight:800; color:#fff; margin-bottom:10px; letter-spacing:-.5px; line-height:1.2; }
-.system-card .system-desc { font-size:14px; color:var(--muted2); line-height:1.75; }
-.sys-bullets { margin-top:20px; display:flex; flex-direction:column; gap:8px; }
-.sys-bullet { font-size:13px; color:var(--muted2); display:flex; align-items:center; gap:9px; }
-.sys-bullet::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--accent-light); flex-shrink:0; }
-.sys-footer { margin-top:26px; display:flex; align-items:center; justify-content:space-between; padding-top:22px; border-top:1px solid var(--border); }
-.sys-deliver { font-size:12px; color:var(--green); font-weight:600; letter-spacing:.5px; }
-.sys-arrow { font-size:12px; font-weight:700; letter-spacing:1px; color:var(--accent-light); text-transform:uppercase; transition:gap .3s; display:flex; align-items:center; gap:6px; }
-.system-card:hover .sys-arrow { gap:12px; }
-
-/* ── ADS RESULTS ── */
-.ads-section { padding:110px 6%; background:var(--surface); }
-.ads-header { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:60px; flex-wrap:wrap; gap:24px; }
-.kpi-row { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:20px; }
-.kpi-card { background:var(--bg); border:1px solid var(--border); border-radius:10px; padding:28px; transition:all .3s; position:relative; overflow:hidden; }
-.kpi-card::after { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(79,70,229,.07),transparent); opacity:0; transition:opacity .3s; }
-.kpi-card:hover::after { opacity:1; }
-.kpi-card:hover { border-color:var(--border2); transform:translateY(-3px); }
-.kpi-label { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-bottom:10px; }
-.kpi-val { font-family:'Syne',sans-serif; font-size:34px; font-weight:800; color:#fff; letter-spacing:-1.5px; line-height:1; }
-.kpi-change { font-size:12px; color:var(--green); margin-top:8px; font-weight:500; }
-.ads-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-.chart-box { background:var(--bg); border:1px solid var(--border); border-radius:10px; padding:30px; }
-.chart-box h4 { font-family:'Syne',sans-serif; font-size:15px; font-weight:700; color:#fff; margin-bottom:4px; letter-spacing:-.3px; }
-.chart-box p { font-size:12px; color:var(--muted); margin-bottom:22px; }
-.ba-table { width:100%; border-collapse:collapse; font-size:13px; }
-.ba-table th { padding:11px 16px; text-align:left; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); border-bottom:1px solid var(--border); }
-.ba-table td { padding:14px 16px; border-bottom:1px solid var(--border); }
-.ba-table td:first-child { color:var(--muted2); }
-.before { color:#ff5a6a; font-weight:500; }
-.after { color:var(--green); font-weight:600; }
-.change-pill { display:inline-block; background:rgba(16,217,138,.12); color:var(--green); border-radius:4px; padding:3px 10px; font-size:11px; font-weight:700; }
-.camp-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:16px; }
-.campaign-card { background:var(--bg); border:1px solid var(--border); border-radius:10px; padding:24px; display:flex; flex-direction:column; gap:12px; transition:all .3s; }
-.campaign-card:hover { border-color:var(--border2); transform:translateY(-3px); }
-.camp-header { display:flex; justify-content:space-between; align-items:flex-start; gap:10px; }
-.camp-name { font-family:'Syne',sans-serif; font-size:14px; font-weight:700; color:#fff; letter-spacing:-.2px; }
-.camp-status { font-size:10px; letter-spacing:1.5px; text-transform:uppercase; background:rgba(16,217,138,.1); color:var(--green); border-radius:4px; padding:3px 9px; white-space:nowrap; flex-shrink:0; }
-.camp-metrics { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; }
-.camp-metric { background:var(--surface2); border-radius:6px; padding:10px 12px; }
-.camp-metric-label { font-size:10px; color:var(--muted); letter-spacing:1px; text-transform:uppercase; margin-bottom:4px; }
-.camp-metric-val { font-family:'Syne',sans-serif; font-size:17px; font-weight:700; color:#fff; }
-.camp-metric-val.green { color:var(--green); }
-.progress-label { display:flex; justify-content:space-between; font-size:11px; color:var(--muted); margin-bottom:6px; }
-.progress-bar { height:3px; background:rgba(255,255,255,.07); border-radius:10px; overflow:hidden; }
-.progress-fill { height:100%; border-radius:10px; background:linear-gradient(90deg,var(--accent),var(--cyan)); width:0%; transition:width 1.3s cubic-bezier(.4,0,.2,1); }
-
-/* ── WORK ── */
-.work { padding:110px 6%; }
-.work-header { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:60px; flex-wrap:wrap; gap:24px; }
-.work-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
-.work-item { position:relative; border-radius:12px; overflow:hidden; cursor:pointer; text-decoration:none; display:block; border:1px solid var(--border); background:var(--surface); transition:border-color .3s, transform .4s; }
-.work-item:hover { border-color:var(--border2); transform:translateY(-4px); }
-.work-thumb { width:100%; aspect-ratio:16/10; background:var(--surface2); overflow:hidden; position:relative; }
-.work-thumb-img { width:100%; height:100%; object-fit:cover; transition:transform .7s cubic-bezier(.4,0,.2,1); display:block; }
-.work-item:hover .work-thumb-img { transform:scale(1.05); }
-.work-thumb-placeholder { width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-family:'Syne',sans-serif; font-size:28px; font-weight:800; color:rgba(255,255,255,.1); }
-.work-content { padding:24px 26px; }
-.work-tag { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--accent-light); font-weight:600; margin-bottom:6px; display:block; }
-.work-title { font-family:'Syne',sans-serif; font-size:17px; font-weight:700; color:#fff; letter-spacing:-.3px; margin-bottom:12px; }
-.work-meta { display:flex; flex-direction:column; gap:6px; }
-.work-result { font-size:13px; color:var(--green); font-weight:600; display:flex; align-items:center; gap:6px; }
-.work-result::before { content:'↑'; }
-.work-detail { font-size:12.5px; color:var(--muted2); line-height:1.6; }
-.work-link { display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:600; color:var(--accent-light); text-decoration:none; margin-top:16px; letter-spacing:.5px; text-transform:uppercase; transition:gap .3s; }
-.work-item:hover .work-link { gap:10px; }
-
-/* ── BRANDS ── */
-.brands-section { padding:64px 6%; border-top:1px solid var(--border); border-bottom:1px solid var(--border); position:relative; z-index:2; }
-.brands-label { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--muted); text-align:center; margin-bottom:36px; }
-.brands-logos { display:flex; justify-content:center; align-items:center; gap:48px; flex-wrap:wrap; }
-.brand-logo { font-family:'Syne',sans-serif; font-size:14px; font-weight:800; letter-spacing:-.2px; color:rgba(255,255,255,.16); transition:color .3s; text-transform:uppercase; }
-.brand-logo:hover { color:rgba(255,255,255,.6); }
-
-/* ── LEAD FORM ── */
-.lead-form-section { padding:110px 6%; background:var(--surface); position:relative; overflow:hidden; }
-.lead-form-section::before { content:''; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:900px; height:500px; background:radial-gradient(ellipse at center,rgba(79,70,229,.1),transparent 65%); pointer-events:none; }
-.lead-form-inner { max-width:820px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; position:relative; z-index:1; }
-.lead-form-left .section-sub { margin-top:0; }
-.trust-badges { margin-top:36px; display:flex; flex-direction:column; gap:14px; }
-.trust-badge { display:flex; align-items:center; gap:12px; }
-.trust-icon { width:34px; height:34px; border-radius:8px; background:rgba(79,70,229,.12); border:1px solid var(--border2); display:flex; align-items:center; justify-content:center; font-size:15px; flex-shrink:0; }
-.trust-text { font-size:13.5px; color:var(--text); }
-.trust-text strong { color:#fff; }
-.lead-form { background:var(--bg); border:1px solid var(--border); border-radius:12px; padding:38px 34px; }
-.lead-form h3 { font-family:'Syne',sans-serif; font-size:20px; font-weight:800; color:#fff; letter-spacing:-.5px; margin-bottom:6px; }
-.lead-form .form-sub { font-size:13px; color:var(--muted2); margin-bottom:28px; }
-.form-group { margin-bottom:16px; }
-.form-group label { display:block; font-size:12px; font-weight:600; color:var(--muted2); letter-spacing:.5px; text-transform:uppercase; margin-bottom:8px; }
-.form-group input, .form-group select { width:100%; background:var(--surface2); border:1px solid var(--border); border-radius:7px; color:#fff; font-family:'DM Sans',sans-serif; font-size:14px; padding:13px 16px; outline:none; transition:border-color .3s; appearance:none; }
-.form-group input::placeholder { color:var(--muted); }
-.form-group select { cursor:pointer; }
-.form-group select option { background:var(--surface2); }
-.form-group input:focus, .form-group select:focus { border-color:var(--accent-light); }
-.form-submit { width:100%; margin-top:8px; background:var(--accent); color:#fff; padding:15px 24px; border-radius:7px; font-family:'Syne',sans-serif; font-weight:700; font-size:15px; border:none; cursor:pointer; transition:all .3s; letter-spacing:-.2px; }
-.form-submit:hover { background:var(--accent-light); transform:translateY(-1px); box-shadow:0 12px 36px rgba(79,70,229,.4); }
-.form-note { font-size:11.5px; color:var(--muted); text-align:center; margin-top:14px; }
-
-/* ── TESTIMONIALS ── */
-.testimonials { padding:110px 6%; }
-.testimonials-header { text-align:center; margin-bottom:60px; }
-.testimonials-header .section-sub { margin:0 auto; text-align:center; }
-.testi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
-.testi-card { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:34px; transition:all .4s; position:relative; overflow:hidden; }
-.testi-card::before { content:''; position:absolute; inset:0; border-radius:12px; background:radial-gradient(ellipse at top left,rgba(79,70,229,.09),transparent 60%); opacity:0; transition:opacity .4s; }
-.testi-card:hover::before { opacity:1; }
-.testi-card:hover { border-color:var(--border2); transform:translateY(-5px); }
-.testi-stars { display:flex; gap:3px; margin-bottom:16px; }
-.star { color:#fbbf24; font-size:13px; }
-.testi-result { background:rgba(16,217,138,.08); border:1px solid rgba(16,217,138,.2); border-radius:6px; padding:8px 14px; font-size:13px; font-weight:700; color:var(--green); margin-bottom:18px; letter-spacing:-.2px; }
-.testi-text { font-size:14px; line-height:1.8; color:var(--text); margin-bottom:24px; }
-.testi-author { display:flex; align-items:center; gap:13px; border-top:1px solid var(--border); padding-top:20px; }
-.testi-avatar { width:42px; height:42px; border-radius:50%; background:linear-gradient(135deg,var(--accent),var(--cyan)); display:flex; align-items:center; justify-content:center; font-family:'Syne',sans-serif; font-size:13px; font-weight:800; color:#fff; flex-shrink:0; }
-.testi-name { font-family:'Syne',sans-serif; font-size:14px; font-weight:700; color:#fff; }
-.testi-role { font-size:12px; color:var(--muted2); }
-
-/* ── PROCESS ── */
-.process { padding:110px 6%; background:var(--surface); }
-.process-header { text-align:center; margin-bottom:72px; }
-.process-header .section-sub { margin:0 auto; text-align:center; }
-.process-list { max-width:680px; margin:0 auto; position:relative; }
-.process-line { position:absolute; left:19px; top:0; bottom:0; width:1px; background:var(--border); }
-.process-item { display:flex; gap:30px; padding:30px 0; border-bottom:1px solid var(--border); }
-.process-item:last-child { border-bottom:none; }
-.process-dot { width:40px; height:40px; flex-shrink:0; border:1px solid var(--border); border-radius:8px; display:flex; align-items:center; justify-content:center; font-family:'Syne',sans-serif; font-size:12px; font-weight:700; color:var(--muted); background:var(--surface); position:relative; z-index:1; transition:all .35s; }
-.process-item:hover .process-dot { border-color:var(--accent-light); color:#fff; background:rgba(79,70,229,.18); }
-.process-content { padding-top:6px; }
-.process-content h3 { font-family:'Syne',sans-serif; font-size:17px; font-weight:700; color:#fff; margin-bottom:8px; letter-spacing:-.3px; }
-.process-content p { font-size:14px; color:var(--muted2); line-height:1.75; }
-.process-badge { display:inline-block; margin-top:10px; font-size:12px; font-weight:600; color:var(--accent-light); background:rgba(79,70,229,.08); border:1px solid rgba(79,70,229,.2); border-radius:4px; padding:3px 10px; }
-
-/* ── FAQ ── */
-.faq-section { padding:110px 6%; }
-.faq-header { text-align:center; margin-bottom:60px; }
-.faq-header .section-sub { margin:0 auto; text-align:center; }
-.faq-list { max-width:720px; margin:0 auto; }
-.faq-item { border-bottom:1px solid var(--border); }
-.faq-question { width:100%; background:none; border:none; color:#fff; font-family:'Syne',sans-serif; font-size:16px; font-weight:600; letter-spacing:-.3px; text-align:left; padding:22px 0; cursor:pointer; display:flex; justify-content:space-between; align-items:center; gap:16px; transition:color .3s; }
-.faq-question:hover { color:var(--accent-light); }
-.faq-icon { width:28px; height:28px; border-radius:6px; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:all .3s; font-size:16px; color:var(--muted); }
-.faq-item.open .faq-icon { background:var(--accent); border-color:var(--accent); color:#fff; transform:rotate(45deg); }
-.faq-answer { font-size:14px; line-height:1.85; color:var(--muted2); max-height:0; overflow:hidden; transition:max-height .4s ease, padding-bottom .4s; }
-.faq-item.open .faq-answer { max-height:300px; padding-bottom:24px; }
-
-/* ── CTA ── */
-.cta-section { padding:130px 6%; background:var(--surface); overflow:hidden; position:relative; }
-.cta-section::before { content:''; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:1000px; height:500px; background:radial-gradient(ellipse at center,rgba(79,70,229,.16),transparent 65%); pointer-events:none; }
-.cta-inner { max-width:700px; margin:0 auto; text-align:center; position:relative; z-index:1; }
-.cta-section .section-title { font-size:clamp(36px,5.5vw,68px); }
-.cta-sub { font-size:16px; color:var(--muted2); margin:20px 0 16px; line-height:1.75; }
-.cta-meta { font-size:13px; color:var(--muted); margin-bottom:40px; }
-.cta-meta span { color:var(--green); font-weight:600; }
-.contact-options { display:flex; gap:14px; justify-content:center; flex-wrap:wrap; }
-.whatsapp-btn { display:inline-flex; align-items:center; gap:10px; background:#25D366; color:#fff; padding:15px 34px; border-radius:6px; font-weight:700; font-size:15px; text-decoration:none; transition:all .3s; }
-.whatsapp-btn:hover { background:#22c55e; transform:translateY(-2px); box-shadow:0 16px 40px rgba(37,211,102,.35); }
-
-/* ── FOOTER ── */
-footer { padding:30px 6%; border-top:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; position:relative; z-index:2; }
-.footer-logo { font-family:'Syne',sans-serif; font-weight:800; font-size:16px; color:#fff; }
-.footer-logo em { color:var(--accent-light); font-style:normal; }
-.footer-copy { font-size:12px; color:var(--muted); }
-.footer-links { display:flex; gap:20px; }
-.footer-links a { font-size:12px; color:var(--muted2); text-decoration:none; transition:color .3s; }
-.footer-links a:hover { color:#fff; }
-
-/* ── ANIMATIONS ── */
-@keyframes fadeUp { from{opacity:0;transform:translateY(32px);} to{opacity:1;transform:translateY(0);} }
-.reveal { opacity:0; transform:translateY(38px); transition:opacity .75s ease, transform .75s ease; }
-.reveal.visible { opacity:1; transform:translateY(0); }
-.reveal-delay-1{transition-delay:.1s;} .reveal-delay-2{transition-delay:.2s;} .reveal-delay-3{transition-delay:.3s;} .reveal-delay-4{transition-delay:.4s;}
-
-/* ── RESPONSIVE ── */
-@media(max-width:1024px) {
-  .lead-form-inner { grid-template-columns:1fr; gap:48px; max-width:540px; }
-  .lead-form-left .section-title { font-size:clamp(28px,5vw,44px); }
+/* Custom cursor — desktop only */
+@media(pointer:fine){
+  body{cursor:none;}
+  .cur{position:fixed;pointer-events:none;z-index:9999;mix-blend-mode:difference;}
+  #cur-dot{width:8px;height:8px;background:#fff;border-radius:50%;top:0;left:0;transform:translate(-50%,-50%);}
+  #cur-ring{width:36px;height:36px;border:1.5px solid rgba(34,211,238,.55);border-radius:50%;top:0;left:0;transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s,background .2s;}
+  #cur-ring.big{width:58px;height:58px;border-color:rgba(37,99,235,.7);background:rgba(37,99,235,.05);}
 }
-@media(max-width:900px) {
-  .ads-grid { grid-template-columns:1fr; }
-  .testi-grid { grid-template-columns:1fr; }
-  .camp-grid { grid-template-columns:1fr; }
-  .work-grid { grid-template-columns:1fr 1fr; }
-  .systems-grid { grid-template-columns:1fr; }
+
+/* ── GRAIN OVERLAY ── */
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.04'/%3E%3C/svg%3E");background-size:200px;z-index:0;pointer-events:none;opacity:.35;}
+
+/* ═══════════════════════════════════════════
+   UTILITIES
+═══════════════════════════════════════════ */
+.container{max-width:1160px;margin:0 auto;padding:0 5%;}
+.z1{position:relative;z-index:1;}
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.vis{opacity:1;transform:none;}
+.rd1{transition-delay:.08s;}.rd2{transition-delay:.16s;}.rd3{transition-delay:.24s;}.rd4{transition-delay:.32s;}.rd5{transition-delay:.40s;}
+.tag-pill{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--cyan);border:1px solid rgba(34,211,238,.25);background:rgba(34,211,238,.06);padding:6px 14px;border-radius:4px;}
+.section-head{text-align:center;margin-bottom:64px;}
+.section-head h2{font-family:var(--font-head);font-size:clamp(28px,4vw,50px);font-weight:800;letter-spacing:-1.5px;color:#fff;margin-bottom:14px;line-height:1.05;}
+.section-head p{font-size:15px;color:var(--muted2);max-width:480px;margin:0 auto;line-height:1.8;}
+.badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 11px;border-radius:4px;}
+.badge-blue{background:rgba(37,99,235,.18);color:var(--blue-l);border:1px solid rgba(37,99,235,.3);}
+.badge-cyan{background:rgba(34,211,238,.1);color:var(--cyan);border:1px solid rgba(34,211,238,.25);}
+.badge-purple{background:rgba(124,58,237,.18);color:var(--purple-l);border:1px solid rgba(124,58,237,.3);}
+.badge-green{background:rgba(16,185,129,.1);color:var(--green);border:1px solid rgba(16,185,129,.25);}
+.dot-live{width:7px;height:7px;border-radius:50%;background:var(--green);display:inline-block;box-shadow:0 0 8px var(--green);animation:pulse-live 2s infinite;}
+@keyframes pulse-live{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.5);opacity:.6;}}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:var(--font-head);font-weight:700;font-size:14px;letter-spacing:.2px;padding:13px 28px;border-radius:var(--r);transition:all .28s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden;}
+.btn::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,.09);opacity:0;transition:opacity .25s;}
+.btn:hover::after{opacity:1;}
+.btn:hover{transform:translateY(-2px);}
+.btn-solid{background:var(--blue);color:#fff;box-shadow:0 4px 24px rgba(37,99,235,.35);}
+.btn-solid:hover{background:var(--blue-l);box-shadow:0 8px 36px rgba(37,99,235,.5);}
+.btn-outline{border:1px solid var(--border2);color:var(--blue-l);background:rgba(37,99,235,.06);}
+.btn-outline:hover{border-color:var(--blue-l);background:rgba(37,99,235,.12);}
+.btn-ghost{border:1px solid var(--border);color:var(--muted2);background:transparent;}
+.btn-ghost:hover{border-color:rgba(255,255,255,.2);color:#fff;}
+.btn-wa{background:#25D366;color:#fff;box-shadow:0 4px 20px rgba(37,211,102,.3);}
+.btn-wa:hover{background:#22c55e;box-shadow:0 8px 32px rgba(37,211,102,.45);}
+.btn-full{width:100%;justify-content:center;}
+.btn-lg{padding:16px 36px;font-size:15px;}
+
+/* ── GLOW MESH BG ── */
+.glow-mesh{position:absolute;pointer-events:none;border-radius:50%;}
+.gm-blue{background:radial-gradient(ellipse,rgba(37,99,235,.18) 0%,transparent 65%);}
+.gm-cyan{background:radial-gradient(ellipse,rgba(34,211,238,.12) 0%,transparent 65%);}
+.gm-purple{background:radial-gradient(ellipse,rgba(124,58,237,.16) 0%,transparent 65%);}
+
+/* ═══════════════════════════════════════════
+   HEADER
+═══════════════════════════════════════════ */
+#header{position:fixed;top:0;left:0;right:0;z-index:500;padding:20px 5%;display:flex;align-items:center;justify-content:space-between;transition:all .4s;}
+#header.stuck{background:rgba(5,5,7,.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);padding-top:14px;padding-bottom:14px;}
+.logo{font-family:var(--font-head);font-weight:800;font-size:19px;color:#fff;letter-spacing:-.5px;}
+.logo span{color:var(--blue-l);}
+.nav{display:flex;align-items:center;gap:24px;}
+.nav a{font-size:13px;font-weight:500;color:var(--muted2);transition:color .25s;letter-spacing:.1px;}
+.nav a:hover{color:#fff;}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:600;}
+.ham span{display:block;width:22px;height:1.5px;background:#fff;transition:all .3s;}
+.ham.open span:nth-child(1){transform:rotate(45deg) translate(4px,5px);}
+.ham.open span:nth-child(2){opacity:0;}
+.ham.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-5px);}
+.mob-nav{position:fixed;inset:0;background:rgba(5,5,7,.97);backdrop-filter:blur(20px);z-index:550;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:36px;opacity:0;pointer-events:none;transition:opacity .35s;}
+.mob-nav.open{opacity:1;pointer-events:all;}
+.mob-nav a{font-family:var(--font-head);font-size:26px;font-weight:700;color:var(--text);transition:color .25s;}
+.mob-nav a:hover{color:var(--blue-l);}
+
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+.hero{min-height:100vh;display:flex;align-items:center;padding:120px 5% 80px;position:relative;overflow:hidden;}
+.hero-gm1{width:700px;height:500px;top:-100px;right:-150px;}
+.hero-gm2{width:500px;height:400px;bottom:-80px;left:-100px;}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;width:100%;max-width:1160px;margin:0 auto;}
+.hero-left{}
+.hero-availability{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--green);margin-bottom:24px;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.22);border-radius:4px;padding:6px 14px;}
+.hero h1{font-family:var(--font-head);font-size:clamp(42px,5.5vw,72px);font-weight:800;line-height:.97;letter-spacing:-2.5px;color:#fff;margin-bottom:22px;}
+.hero h1 .hl{background:linear-gradient(135deg,var(--blue-l),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{font-size:16px;color:var(--muted2);line-height:1.75;max-width:440px;margin-bottom:10px;}
+.hero-note{font-size:13px;color:var(--muted);font-style:italic;margin-bottom:32px;}
+.hero-note span{color:var(--cyan);font-style:normal;font-weight:600;}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap;}
+.hero-meta{margin-top:36px;display:flex;gap:28px;flex-wrap:wrap;}
+.hero-meta-item{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--muted2);}
+.hero-meta-icon{font-size:14px;}
+
+/* FLOATING CARDS */
+.hero-right{position:relative;height:440px;display:flex;align-items:center;justify-content:center;}
+.float-cards{position:relative;width:320px;height:400px;}
+.fcard{position:absolute;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:22px 26px;cursor:pointer;transition:transform .35s cubic-bezier(.4,0,.2,1),box-shadow .35s,border-color .35s;transform-style:preserve-3d;will-change:transform;}
+.fcard:hover{border-color:var(--border2);z-index:10;}
+.fcard-icon{font-size:26px;margin-bottom:12px;}
+.fcard-title{font-family:var(--font-head);font-size:15px;font-weight:700;color:#fff;margin-bottom:5px;}
+.fcard-sub{font-size:12px;color:var(--muted2);}
+.fcard-price{font-family:var(--font-mono);font-size:13px;color:var(--cyan);margin-top:10px;font-weight:500;}
+.fcard-glow{position:absolute;inset:-1px;border-radius:var(--r2);opacity:0;transition:opacity .35s;pointer-events:none;}
+.fcard:hover .fcard-glow{opacity:1;}
+/* card positions */
+.fc1{top:0;left:0;width:180px;transform:rotate(-4deg);animation:float1 5s ease-in-out infinite;}
+.fc1 .fcard-glow{background:radial-gradient(ellipse at center,rgba(37,99,235,.25),transparent);}
+.fc2{top:20px;right:0;width:175px;transform:rotate(3deg);animation:float2 6s ease-in-out infinite .8s;}
+.fc2 .fcard-glow{background:radial-gradient(ellipse at center,rgba(34,211,238,.2),transparent);}
+.fc3{bottom:60px;left:10px;width:170px;transform:rotate(2deg);animation:float3 5.5s ease-in-out infinite 1.2s;}
+.fc3 .fcard-glow{background:radial-gradient(ellipse at center,rgba(124,58,237,.22),transparent);}
+.fc4{bottom:40px;right:10px;width:175px;transform:rotate(-2deg);animation:float4 4.8s ease-in-out infinite .5s;}
+.fc4 .fcard-glow{background:radial-gradient(ellipse at center,rgba(16,185,129,.18),transparent);}
+@keyframes float1{0%,100%{transform:rotate(-4deg) translateY(0);}50%{transform:rotate(-4deg) translateY(-10px);}}
+@keyframes float2{0%,100%{transform:rotate(3deg) translateY(0);}50%{transform:rotate(3deg) translateY(-14px);}}
+@keyframes float3{0%,100%{transform:rotate(2deg) translateY(0);}50%{transform:rotate(2deg) translateY(-8px);}}
+@keyframes float4{0%,100%{transform:rotate(-2deg) translateY(0);}50%{transform:rotate(-2deg) translateY(-12px);}}
+
+/* ═══════════════════════════════════════════
+   TRUST STRIP
+═══════════════════════════════════════════ */
+.trust-strip{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg1);position:relative;z-index:2;}
+.trust-inner{display:grid;grid-template-columns:repeat(4,1fr);position:relative;}
+.trust-item{padding:40px 28px;text-align:center;border-right:1px solid var(--border);transition:background .3s;position:relative;overflow:hidden;}
+.trust-item:last-child{border-right:none;}
+.trust-item::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,var(--glow-b),transparent 70%);opacity:0;transition:opacity .4s;}
+.trust-item:hover::before{opacity:1;}
+.trust-num{font-family:var(--font-head);font-size:46px;font-weight:800;letter-spacing:-2px;color:#fff;line-height:1;margin-bottom:8px;}
+.trust-num .hl{color:var(--cyan);}
+.trust-label{font-size:12.5px;color:var(--muted2);letter-spacing:.2px;}
+
+/* ═══════════════════════════════════════════
+   SYSTEM BUILDER
+═══════════════════════════════════════════ */
+.builder-section{padding:120px 0;position:relative;overflow:hidden;}
+.builder-gm{width:800px;height:600px;top:50%;left:50%;transform:translate(-50%,-50%);}
+.builder-inner{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;}
+.builder-left h2{font-family:var(--font-head);font-size:clamp(28px,3.5vw,44px);font-weight:800;letter-spacing:-1.5px;color:#fff;margin:16px 0 12px;line-height:1.05;}
+.builder-left p{font-size:14px;color:var(--muted2);line-height:1.8;margin-bottom:32px;}
+.check-group{display:flex;flex-direction:column;gap:12px;}
+.check-item{display:flex;align-items:center;gap:14px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:16px 20px;cursor:pointer;transition:all .3s;position:relative;overflow:hidden;user-select:none;}
+.check-item::before{content:'';position:absolute;inset:0;background:var(--glow-b);opacity:0;transition:opacity .3s;}
+.check-item.active::before{opacity:1;}
+.check-item.active{border-color:var(--border2);}
+.check-item input{display:none;}
+.check-box{width:20px;height:20px;border:1.5px solid var(--muted);border-radius:5px;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .3s;position:relative;z-index:1;}
+.check-item.active .check-box{border-color:var(--blue);background:var(--blue);}
+.check-box-tick{width:10px;height:10px;opacity:0;transform:scale(0);transition:all .25s;color:#fff;font-size:11px;font-weight:700;}
+.check-item.active .check-box-tick{opacity:1;transform:scale(1);}
+.check-info{flex:1;position:relative;z-index:1;}
+.check-name{font-family:var(--font-head);font-size:15px;font-weight:700;color:#fff;margin-bottom:3px;}
+.check-detail{font-size:12.5px;color:var(--muted2);}
+.check-price{font-family:var(--font-mono);font-size:14px;color:var(--cyan);position:relative;z-index:1;font-weight:500;}
+
+/* BUILDER OUTPUT */
+.builder-right{position:sticky;top:100px;}
+.builder-output{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r3);overflow:hidden;}
+.bo-header{padding:22px 26px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.bo-title{font-family:var(--font-mono);font-size:12px;color:var(--muted2);letter-spacing:1px;text-transform:uppercase;}
+.bo-status{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--green);}
+.bo-body{padding:26px;}
+.bo-empty{text-align:center;padding:40px 20px;}
+.bo-empty-icon{font-size:36px;margin-bottom:12px;opacity:.4;}
+.bo-empty-txt{font-size:14px;color:var(--muted);line-height:1.7;}
+.bo-total-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:22px;padding-bottom:18px;border-bottom:1px solid var(--border);}
+.bo-label{font-size:12px;color:var(--muted2);text-transform:uppercase;letter-spacing:1.5px;}
+.bo-price{font-family:var(--font-head);font-size:38px;font-weight:800;color:#fff;letter-spacing:-1.5px;transition:all .4s;}
+.bo-price .hl{color:var(--cyan);}
+.bo-timeline-row{display:flex;align-items:center;gap:8px;margin-bottom:24px;font-size:13.5px;color:var(--muted2);}
+.bo-timeline-val{color:#fff;font-weight:600;}
+.bo-items{display:flex;flex-direction:column;gap:8px;margin-bottom:22px;}
+.bo-item{display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--muted2);padding:10px 14px;background:var(--bg3);border-radius:var(--r);animation:popIn .3s ease;}
+@keyframes popIn{from{opacity:0;transform:scale(.95);}to{opacity:1;transform:scale(1);}}
+.bo-item-icon{font-size:16px;}
+.bo-item-name{flex:1;color:var(--text);}
+.bo-item-price{font-family:var(--font-mono);font-size:13px;color:var(--cyan);}
+.bo-flow{margin-top:18px;padding-top:18px;border-top:1px solid var(--border);}
+.bo-flow-label{font-size:11px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;}
+.bo-flow-steps{display:flex;align-items:center;gap:0;flex-wrap:wrap;gap:6px;}
+.bo-step{display:flex;align-items:center;gap:6px;}
+.bo-step-pill{font-size:11.5px;font-weight:600;padding:5px 12px;background:var(--bg);border:1px solid var(--border);border-radius:4px;color:var(--text);white-space:nowrap;}
+.bo-step-pill.active{border-color:var(--border2);color:var(--blue-l);background:rgba(37,99,235,.08);}
+.bo-step-arrow{color:var(--muted);font-size:12px;}
+.bo-cta{margin-top:22px;}
+
+/* ═══════════════════════════════════════════
+   SYSTEM FLOW PIPELINE
+═══════════════════════════════════════════ */
+.pipeline-section{padding:80px 0;background:var(--bg1);border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden;}
+.pipeline-section .section-head{margin-bottom:48px;}
+.pipeline-outer{overflow-x:auto;padding:0 5%;}
+.pipeline-track{display:flex;align-items:center;gap:0;min-width:max-content;margin:0 auto;justify-content:center;}
+.pipe-node{display:flex;flex-direction:column;align-items:center;gap:12px;position:relative;}
+.pipe-circle{width:64px;height:64px;border-radius:50%;border:1.5px solid var(--border2);background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:24px;position:relative;z-index:2;transition:all .3s;}
+.pipe-circle.active{border-color:var(--blue);background:rgba(37,99,235,.12);box-shadow:0 0 24px rgba(37,99,235,.3);}
+.pipe-label{font-family:var(--font-head);font-size:13px;font-weight:700;color:var(--text);text-align:center;white-space:nowrap;}
+.pipe-sub{font-size:11px;color:var(--muted2);text-align:center;white-space:nowrap;}
+.pipe-connector{width:100px;height:3px;background:var(--bg3);border-radius:2px;position:relative;flex-shrink:0;margin:0 -1px;overflow:hidden;top:-20px;}
+.pipe-connector-fill{position:absolute;top:0;left:0;height:100%;width:0%;background:linear-gradient(90deg,var(--blue),var(--cyan));border-radius:2px;transition:width 1.2s cubic-bezier(.4,0,.2,1);}
+.pipe-dot{position:absolute;top:50%;transform:translateY(-50%);width:10px;height:10px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan);animation:moveDot 2.5s linear infinite;opacity:0;}
+.pipe-dot.running{opacity:1;}
+@keyframes moveDot{from{left:-5%;}to{left:105%;}}
+
+/* ═══════════════════════════════════════════
+   PHONE APP DEMO
+═══════════════════════════════════════════ */
+.demo-section{padding:120px 0;position:relative;overflow:hidden;}
+.demo-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.demo-text .tag-pill{margin-bottom:20px;}
+.demo-text h2{font-family:var(--font-head);font-size:clamp(28px,3.8vw,48px);font-weight:800;letter-spacing:-1.5px;color:#fff;margin-bottom:18px;line-height:1.05;}
+.demo-text p{font-size:15px;color:var(--muted2);line-height:1.8;margin-bottom:28px;}
+.demo-features{display:flex;flex-direction:column;gap:14px;}
+.demo-feat{display:flex;align-items:flex-start;gap:12px;}
+.demo-feat-icon{width:34px;height:34px;border-radius:8px;background:rgba(37,99,235,.12);border:1px solid rgba(37,99,235,.25);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;margin-top:2px;}
+.demo-feat-text strong{display:block;font-size:14px;color:#fff;margin-bottom:3px;}
+.demo-feat-text span{font-size:13px;color:var(--muted2);line-height:1.6;}
+.phone-wrap{display:flex;justify-content:center;align-items:center;perspective:1000px;}
+.phone{width:240px;height:490px;border-radius:36px;border:2px solid rgba(255,255,255,.12);background:#0a0a14;position:relative;overflow:hidden;box-shadow:0 40px 100px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.05),inset 0 1px 0 rgba(255,255,255,.1);transform-style:preserve-3d;transition:transform .4s cubic-bezier(.4,0,.2,1);cursor:pointer;}
+.phone:hover{transform:rotateY(-10deg) rotateX(4deg);}
+.phone-notch{position:absolute;top:12px;left:50%;transform:translateX(-50%);width:80px;height:22px;background:#0a0a14;border-radius:12px;z-index:10;border:1px solid rgba(255,255,255,.06);}
+.phone-screen{position:absolute;inset:0;background:var(--bg);display:flex;flex-direction:column;overflow:hidden;}
+.phone-status{padding:18px 14px 6px;display:flex;justify-content:space-between;font-size:9px;color:var(--muted2);font-family:var(--font-mono);}
+.phone-content{flex:1;padding:8px 10px;overflow:hidden;}
+.app-bar{background:var(--bg2);border-radius:10px;padding:10px 14px;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+.app-bar-icon{width:28px;height:28px;border-radius:8px;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.app-bar-text{font-size:10px;}
+.app-bar-text .abt{font-family:var(--font-head);font-weight:700;color:#fff;font-size:11px;}
+.app-bar-text .abs{color:var(--muted2);font-size:9px;}
+.app-card{background:var(--bg2);border-radius:10px;padding:12px;margin-bottom:8px;border:1px solid var(--border);}
+.app-card-label{font-size:8.5px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px;}
+.app-card-val{font-family:var(--font-head);font-size:22px;font-weight:800;color:#fff;letter-spacing:-1px;}
+.app-card-change{font-size:9px;color:var(--green);margin-top:2px;}
+.app-mini-row{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px;}
+.app-mini{background:var(--bg2);border-radius:8px;padding:10px 12px;border:1px solid var(--border);}
+.app-mini-label{font-size:8px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:3px;}
+.app-mini-val{font-family:var(--font-head);font-size:15px;font-weight:800;color:#fff;}
+.app-mini-val.cyan{color:var(--cyan);}
+.phone-bar-container{background:var(--bg2);border-radius:8px;padding:10px 12px;margin-bottom:8px;}
+.pbar-label{font-size:8px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:5px;display:flex;justify-content:space-between;}
+.pbar{height:4px;background:var(--bg3);border-radius:4px;overflow:hidden;margin-bottom:4px;}
+.pbar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--blue),var(--cyan));}
+.phone-nav{background:var(--bg2);padding:10px 14px;display:flex;justify-content:space-around;border-top:1px solid var(--border);font-size:16px;}
+
+/* ═══════════════════════════════════════════
+   RESULTS / CHARTS
+═══════════════════════════════════════════ */
+.results-section{padding:120px 0;background:var(--bg1);}
+.results-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px;}
+.results-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+.chart-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:28px;transition:border-color .3s;}
+.chart-card:hover{border-color:var(--border2);}
+.chart-card h4{font-family:var(--font-head);font-size:15px;font-weight:700;color:#fff;margin-bottom:4px;letter-spacing:-.3px;}
+.chart-card p{font-size:12px;color:var(--muted2);margin-bottom:22px;}
+.kpi-mini{text-align:center;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:24px;transition:all .3s;}
+.kpi-mini:hover{border-color:var(--border2);transform:translateY(-3px);}
+.kpi-mini-val{font-family:var(--font-head);font-size:32px;font-weight:800;color:#fff;letter-spacing:-1.5px;line-height:1;margin-bottom:8px;}
+.kpi-mini-val.cyan{color:var(--cyan);}
+.kpi-mini-val.green{color:var(--green);}
+.kpi-mini-label{font-size:11.5px;color:var(--muted2);}
+.kpi-mini-change{font-size:11px;color:var(--green);margin-top:5px;font-weight:600;}
+.ba-table{width:100%;border-collapse:collapse;font-size:13px;}
+.ba-table th{padding:10px 16px;text-align:left;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);}
+.ba-table td{padding:13px 16px;border-bottom:1px solid var(--border);}
+.ba-table td:first-child{color:var(--muted2);}
+.val-bad{color:#ef4444;font-weight:500;}
+.val-good{color:var(--green);font-weight:600;}
+.pill-green{display:inline-block;background:rgba(16,185,129,.1);color:var(--green);border-radius:4px;padding:3px 9px;font-size:11px;font-weight:700;}
+
+/* ═══════════════════════════════════════════
+   BEFORE / AFTER SLIDER
+═══════════════════════════════════════════ */
+.ba-section{padding:120px 0;position:relative;overflow:hidden;}
+.ba-inner{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+.ba-demo{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r3);overflow:hidden;position:relative;}
+.ba-demo-header{padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;}
+.ba-dots{display:flex;gap:6px;}
+.ba-dot{width:10px;height:10px;border-radius:50%;}
+.bd1{background:#ef4444;}
+.bd2{background:#f59e0b;}
+.bd3{background:#10b981;}
+.ba-demo-title{font-family:var(--font-mono);font-size:12px;color:var(--muted);margin-left:8px;}
+.slider-container{position:relative;height:220px;overflow:hidden;user-select:none;}
+.slider-before,.slider-after{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:24px;}
+.slider-before{background:var(--bg3);}
+.slider-after{background:rgba(37,99,235,.06);}
+.slider-panel{position:absolute;inset:0;overflow:hidden;}
+.slider-panel-before{right:50%;}
+.slider-panel-after{left:50%;background:rgba(37,99,235,.06);}
+.slider-handle{position:absolute;top:0;bottom:0;left:50%;width:3px;background:var(--blue);z-index:10;cursor:ew-resize;transform:translateX(-50%);}
+.slider-knob{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:36px;height:36px;background:var(--blue);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(37,99,235,.5);color:#fff;font-size:14px;cursor:ew-resize;}
+.slider-label{position:absolute;top:12px;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border-radius:4px;}
+.sl-before-label{left:12px;background:rgba(239,68,68,.12);color:#ef4444;border:1px solid rgba(239,68,68,.25);}
+.sl-after-label{right:12px;background:rgba(16,185,129,.1);color:var(--green);border:1px solid rgba(16,185,129,.25);}
+.metric-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:18px;}
+.metric-card{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:14px;}
+.mc-label{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:5px;}
+.mc-row{display:flex;align-items:center;gap:8px;}
+.mc-before{font-family:var(--font-mono);font-size:14px;color:#ef4444;text-decoration:line-through;opacity:.7;}
+.mc-arrow{color:var(--muted);font-size:12px;}
+.mc-after{font-family:var(--font-mono);font-size:16px;font-weight:700;color:var(--green);}
+.ba-text h2{font-family:var(--font-head);font-size:clamp(26px,3.5vw,44px);font-weight:800;letter-spacing:-1.5px;color:#fff;margin:16px 0 14px;line-height:1.05;}
+.ba-text p{font-size:14px;color:var(--muted2);line-height:1.8;margin-bottom:24px;}
+.ba-stat-row{display:flex;gap:24px;flex-wrap:wrap;}
+.ba-stat{text-align:center;}
+.ba-stat-num{font-family:var(--font-head);font-size:32px;font-weight:800;letter-spacing:-1.5px;color:#fff;}
+.ba-stat-num.green{color:var(--green);}
+.ba-stat-label{font-size:11px;color:var(--muted2);}
+
+/* ═══════════════════════════════════════════
+   PRICING
+═══════════════════════════════════════════ */
+.pricing-section{padding:120px 0;background:var(--bg1);position:relative;overflow:hidden;}
+.pricing-gm{width:1200px;height:600px;top:50%;left:50%;transform:translate(-50%,-50%);}
+.pricing-note{text-align:center;font-size:14px;color:var(--muted2);margin-bottom:16px;font-style:italic;}
+.pricing-note strong{color:var(--cyan);font-style:normal;}
+.pricing-early{text-align:center;background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.25);border-radius:var(--r);padding:12px 24px;margin-bottom:48px;font-size:14px;color:var(--purple-l);display:inline-block;position:relative;left:50%;transform:translateX(-50%);}
+.pricing-tabs{display:flex;justify-content:center;gap:8px;margin-bottom:40px;flex-wrap:wrap;}
+.ptab{font-size:13px;font-weight:600;padding:9px 20px;border-radius:var(--r);border:1px solid var(--border);color:var(--muted2);cursor:pointer;transition:all .25s;background:var(--bg2);}
+.ptab.active{background:var(--blue);color:#fff;border-color:var(--blue);box-shadow:0 4px 18px rgba(37,99,235,.4);}
+.pricing-panels .panel{display:none;}
+.pricing-panels .panel.active{display:block;}
+.pricing-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:720px;margin:0 auto;}
+.p-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:32px;transition:all .35s;position:relative;overflow:hidden;}
+.p-card::before{content:'';position:absolute;inset:0;background:var(--glow-b);opacity:0;transition:opacity .35s;pointer-events:none;}
+.p-card:hover::before{opacity:1;}
+.p-card:hover{border-color:var(--border2);transform:translateY(-4px);box-shadow:0 20px 60px rgba(37,99,235,.15);}
+.p-card.popular{border-color:var(--border2);box-shadow:0 0 0 1px rgba(37,99,235,.2);}
+.p-popular-tag{position:absolute;top:-1px;right:24px;background:var(--blue);color:#fff;font-size:11px;font-weight:700;letter-spacing:.5px;padding:4px 12px;border-radius:0 0 8px 8px;text-transform:uppercase;}
+.p-card-icon{font-size:28px;margin-bottom:16px;}
+.p-card-name{font-family:var(--font-head);font-size:17px;font-weight:700;color:#fff;margin-bottom:6px;}
+.p-card-sub{font-size:13px;color:var(--muted2);margin-bottom:20px;line-height:1.6;}
+.p-price{margin-bottom:18px;}
+.p-price-val{font-family:var(--font-head);font-size:36px;font-weight:800;color:#fff;letter-spacing:-2px;line-height:1;}
+.p-price-val .curr{font-size:20px;letter-spacing:0;color:var(--muted2);font-weight:600;}
+.p-price-note{font-size:12px;color:var(--muted2);margin-top:4px;}
+.p-deliver{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--muted2);margin-bottom:20px;}
+.p-deliver-val{color:var(--cyan);font-weight:600;}
+.p-features{display:flex;flex-direction:column;gap:9px;margin-bottom:24px;}
+.p-feat{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--muted2);}
+.p-feat::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0;}
+.p-cta{width:100%;}
+
+/* ═══════════════════════════════════════════
+   DELIVERY TIMELINE
+═══════════════════════════════════════════ */
+.timeline-section{padding:100px 0;position:relative;overflow:hidden;}
+.timeline-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.tl-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:28px;text-align:center;transition:all .35s;position:relative;overflow:hidden;}
+.tl-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),var(--cyan));transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.4,0,.2,1);}
+.tl-card:hover::before{transform:scaleX(1);}
+.tl-card:hover{border-color:var(--border2);transform:translateY(-4px);}
+.tl-icon{font-size:32px;margin-bottom:16px;}
+.tl-service{font-family:var(--font-head);font-size:16px;font-weight:700;color:#fff;margin-bottom:8px;}
+.tl-days{font-family:var(--font-mono);font-size:28px;font-weight:600;color:var(--cyan);letter-spacing:-1px;margin-bottom:6px;}
+.tl-note{font-size:12px;color:var(--muted2);}
+
+/* ═══════════════════════════════════════════
+   WHY / WHO
+═══════════════════════════════════════════ */
+.why-section{padding:100px 0;background:var(--bg1);}
+.why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+.why-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:32px;transition:all .35s;position:relative;overflow:hidden;}
+.why-card::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;border-radius:var(--r2);background:var(--glow-b);opacity:0;transition:opacity .4s;pointer-events:none;}
+.why-card:hover::after{opacity:1;}
+.why-card:hover{border-color:var(--border2);transform:translateY(-4px);}
+.why-icon{font-size:32px;margin-bottom:18px;}
+.why-title{font-family:var(--font-head);font-size:18px;font-weight:700;color:#fff;margin-bottom:10px;letter-spacing:-.3px;}
+.why-text{font-size:14px;color:var(--muted2);line-height:1.8;}
+.who-section{padding:80px 0;}
+.who-tags{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:40px;}
+.who-tag{font-size:14px;font-weight:600;padding:12px 24px;border-radius:var(--r);border:1px solid var(--border);color:var(--text);background:var(--bg2);transition:all .3s;cursor:default;}
+.who-tag:hover{border-color:var(--border2);color:var(--blue-l);background:rgba(37,99,235,.08);transform:translateY(-2px);}
+
+/* ═══════════════════════════════════════════
+   CASE STUDIES
+═══════════════════════════════════════════ */
+.cases-section{padding:100px 0;background:var(--bg1);}
+.cases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.case-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);overflow:hidden;transition:all .4s;position:relative;}
+.case-card:hover{border-color:var(--border2);transform:translateY(-5px);box-shadow:0 24px 64px rgba(37,99,235,.12);}
+.case-thumb{height:150px;display:flex;align-items:center;justify-content:center;font-size:42px;position:relative;overflow:hidden;}
+.case-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent,var(--bg2));opacity:0;transition:opacity .4s;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;}
+.case-card:hover .case-overlay{opacity:1;}
+.case-body{padding:24px;}
+.case-tag{font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue-l);margin-bottom:8px;}
+.case-title{font-family:var(--font-head);font-size:17px;font-weight:700;color:#fff;margin-bottom:10px;letter-spacing:-.3px;}
+.case-result{font-size:13px;color:var(--green);font-weight:600;display:flex;align-items:center;gap:6px;margin-bottom:10px;}
+.case-desc{font-size:13px;color:var(--muted2);line-height:1.7;}
+
+/* ═══════════════════════════════════════════
+   TESTIMONIALS
+═══════════════════════════════════════════ */
+.testi-section{padding:100px 0;}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.tcard{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:30px;transition:all .4s;position:relative;overflow:hidden;}
+.tcard::before{content:'';position:absolute;inset:0;background:var(--glow-b);opacity:0;transition:opacity .4s;border-radius:var(--r2);}
+.tcard:hover::before{opacity:1;}
+.tcard:hover{border-color:var(--border2);transform:translateY(-4px);}
+.tcard-stars{color:#fbbf24;font-size:13px;margin-bottom:14px;letter-spacing:2px;}
+.tcard-result{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-radius:var(--r);padding:7px 12px;font-size:13px;font-weight:700;color:var(--green);margin-bottom:16px;display:inline-block;}
+.tcard-text{font-size:13.5px;color:var(--text);line-height:1.8;margin-bottom:22px;position:relative;z-index:1;}
+.tcard-author{display:flex;align-items:center;gap:12px;border-top:1px solid var(--border);padding-top:18px;position:relative;z-index:1;}
+.tcard-avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--cyan));display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:13px;font-weight:800;color:#fff;flex-shrink:0;}
+.tcard-name{font-family:var(--font-head);font-size:14px;font-weight:700;color:#fff;}
+.tcard-role{font-size:12px;color:var(--muted2);}
+
+/* ═══════════════════════════════════════════
+   LEAD FORM
+═══════════════════════════════════════════ */
+.form-section{padding:120px 0;background:var(--bg1);position:relative;overflow:hidden;}
+.form-gm{width:1000px;height:600px;top:50%;left:50%;transform:translate(-50%,-50%);}
+.form-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:960px;margin:0 auto;}
+.form-left h2{font-family:var(--font-head);font-size:clamp(28px,4vw,52px);font-weight:800;letter-spacing:-2px;color:#fff;margin:16px 0 16px;line-height:1.02;}
+.form-left p{font-size:14px;color:var(--muted2);line-height:1.8;margin-bottom:30px;}
+.trust-list{display:flex;flex-direction:column;gap:13px;}
+.trust-item-row{display:flex;align-items:center;gap:12px;font-size:13.5px;color:var(--text);}
+.trust-item-icon{width:32px;height:32px;border-radius:8px;background:rgba(37,99,235,.12);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.the-form{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r3);padding:36px 32px;}
+.the-form h3{font-family:var(--font-head);font-size:20px;font-weight:800;color:#fff;letter-spacing:-.5px;margin-bottom:6px;}
+.the-form .form-sub{font-size:13px;color:var(--muted2);margin-bottom:28px;}
+.fg{margin-bottom:16px;}
+.fg label{display:block;font-size:11.5px;font-weight:600;color:var(--muted2);letter-spacing:.8px;text-transform:uppercase;margin-bottom:8px;}
+.fg input,.fg select{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);color:#fff;font-size:14px;padding:13px 16px;outline:none;transition:border-color .28s;appearance:none;}
+.fg input::placeholder{color:var(--muted);}
+.fg select option{background:var(--bg3);}
+.fg input:focus,.fg select:focus{border-color:var(--blue-l);}
+.form-btn{width:100%;margin-top:6px;}
+.form-note-txt{font-size:11.5px;color:var(--muted);text-align:center;margin-top:14px;}
+
+/* ═══════════════════════════════════════════
+   FINAL CTA
+═══════════════════════════════════════════ */
+.cta-final{padding:140px 0;position:relative;overflow:hidden;text-align:center;}
+.cta-final-gm{width:1200px;height:600px;top:50%;left:50%;transform:translate(-50%,-50%);}
+.cta-final h2{font-family:var(--font-head);font-size:clamp(36px,6vw,80px);font-weight:800;letter-spacing:-3px;color:#fff;margin-bottom:22px;line-height:.95;position:relative;z-index:1;}
+.cta-final h2 .hl{background:linear-gradient(135deg,var(--blue-l),var(--cyan));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.cta-final p{font-size:16px;color:var(--muted2);margin-bottom:16px;line-height:1.75;max-width:480px;margin-left:auto;margin-right:auto;position:relative;z-index:1;}
+.cta-final .sub-note{font-size:13.5px;color:var(--muted);margin-bottom:40px;position:relative;z-index:1;}
+.cta-final .sub-note span{color:var(--green);font-weight:600;}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;}
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer{padding:28px 5%;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;position:relative;z-index:1;}
+.footer-copy{font-size:12px;color:var(--muted);}
+.footer-links{display:flex;gap:20px;}
+.footer-links a{font-size:12px;color:var(--muted2);transition:color .25s;}
+.footer-links a:hover{color:#fff;}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════ */
+@media(max-width:1024px){
+  .demo-inner,.form-inner,.ba-inner{grid-template-columns:1fr;gap:48px;}
+  .phone-wrap{order:-1;}
+  .form-inner{max-width:560px;}
+  .pricing-cards{grid-template-columns:1fr;}
 }
-@media(max-width:768px) {
-  nav{display:none;} .hamburger{display:flex;}
-  .stats-strip{grid-template-columns:repeat(2,1fr);}
-  .work-grid{grid-template-columns:1fr;}
-  .work-header{flex-direction:column;align-items:flex-start;}
+@media(max-width:900px){
+  .hero-inner{grid-template-columns:1fr;gap:48px;text-align:center;}
+  .hero-right{display:none;}
+  .hero-ctas{justify-content:center;}
+  .hero-meta{justify-content:center;}
+  .hero-sub{margin:0 auto 10px;}
+  .trust-inner{grid-template-columns:repeat(2,1fr);}
+  .builder-inner{grid-template-columns:1fr;gap:40px;}
+  .builder-right{position:static;}
+  .results-grid{grid-template-columns:1fr;}
+  .results-grid-3{grid-template-columns:1fr 1fr;}
+  .timeline-cards{grid-template-columns:repeat(2,1fr);}
+  .why-grid{grid-template-columns:1fr;}
+  .cases-grid,.testi-grid{grid-template-columns:1fr;}
+}
+@media(max-width:640px){
+  .trust-inner{grid-template-columns:1fr 1fr;}
+  .trust-num{font-size:36px;}
+  .results-grid-3{grid-template-columns:1fr;}
+  .timeline-cards{grid-template-columns:1fr;}
+  .nav{display:none;}
+  .ham{display:flex;}
   footer{flex-direction:column;text-align:center;}
   .footer-links{justify-content:center;}
-  .kpi-row{grid-template-columns:1fr 1fr;}
-  .brands-logos{gap:28px;}
-  .ads-header{flex-direction:column;align-items:flex-start;}
-  .hero h1{letter-spacing:-2px;}
-}
-@media(max-width:480px) {
-  .stats-strip{grid-template-columns:1fr 1fr;}
-  .hero-actions{flex-direction:column;align-items:center;}
-  .kpi-row{grid-template-columns:1fr;}
-  .system-card{padding:38px 28px;}
-  .contact-options{flex-direction:column;align-items:center;}
-  .lead-form{padding:30px 24px;}
-  .hero-meta{gap:20px;flex-direction:column;align-items:center;}
+  .pricing-cards{grid-template-columns:1fr;}
+  .ba-inner{grid-template-columns:1fr;}
+  .hero-ctas{flex-direction:column;align-items:center;}
+  .hero-ctas .btn{width:100%;max-width:320px;justify-content:center;}
+  .cta-btns{flex-direction:column;align-items:center;}
+  .cta-btns .btn{width:100%;max-width:320px;justify-content:center;}
 }
 </style>
 </head>
 <body>
-<canvas id="bg-canvas"></canvas>
-<div class="grain"></div>
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursor-ring"></div>
+
+<!-- CURSOR -->
+<div class="cur" id="cur-dot"></div>
+<div class="cur" id="cur-ring"></div>
 
 <!-- MOBILE NAV -->
-<div class="mobile-nav" id="mobile-nav">
-  <a href="#" onclick="toggleMenu()">Home</a>
-  <a href="#systems" onclick="toggleMenu()">Systems</a>
-  <a href="#results" onclick="toggleMenu()">Results</a>
-  <a href="#work" onclick="toggleMenu()">Work</a>
-  <a href="#growth-plan" onclick="toggleMenu()">Free Plan</a>
-  <a href="https://wa.me/917217797821" onclick="toggleMenu()">WhatsApp</a>
+<div class="mob-nav" id="mob-nav">
+  <a href="#" onclick="closeMob()">Home</a>
+  <a href="#builder" onclick="closeMob()">Build System</a>
+  <a href="#pricing" onclick="closeMob()">Pricing</a>
+  <a href="#work" onclick="closeMob()">Work</a>
+  <a href="#contact" onclick="closeMob()">Contact</a>
+  <a href="https://wa.me/917217797821" onclick="closeMob()" class="btn btn-wa btn-lg">📲 WhatsApp</a>
 </div>
 
 <!-- HEADER -->
 <header id="header">
-  <a href="#" class="logo">LK<em>.</em></a>
-  <nav>
-    <a href="#systems">Systems</a>
+  <a href="#" class="logo">LK<span>.</span></a>
+  <nav class="nav">
+    <a href="#builder">Build System</a>
+    <a href="#pricing">Pricing</a>
     <a href="#results">Results</a>
     <a href="#work">Work</a>
-    <a href="#growth-plan">Free Plan</a>
-    <a href="https://wa.me/917217797821" class="nav-cta">WhatsApp →</a>
+    <a href="#contact">Free Plan</a>
+    <a href="https://wa.me/917217797821" class="btn btn-solid" style="padding:9px 20px;font-size:13px;">WhatsApp →</a>
   </nav>
-  <div class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+  <div class="ham" id="ham" onclick="toggleMob()"><span></span><span></span><span></span></div>
 </header>
 
-<!-- HERO -->
+<!-- ═══ HERO ═══ -->
 <section class="hero">
-  <div class="hero-inner">
-    <div class="hero-badge"><span class="dot"></span>Available for New Clients — Cosmetics &amp; Ecommerce</div>
-    <h1>
-      <span class="line">I Help Cosmetics &amp;</span>
-      <span class="line">Ecommerce Brands</span>
-      <span class="line"><span class="accent-word">Generate Leads</span></span>
-      <span class="line">&amp; Scale Revenue</span>
-    </h1>
-    <p class="hero-sub">High-converting websites built in 5–7 days. Meta Ads at ₹19–21 CPL — proven. WhatsApp-first workflow. No calls. Just execution.</p>
-    <div class="hero-tags">
-      <span class="hero-tag">Cosmetics Brands</span>
-      <span class="hero-tag">Beauty Ecommerce</span>
-      <span class="hero-tag">Distributor Lead Gen</span>
-      <span class="hero-tag">D2C Founders</span>
+  <div class="glow-mesh gm-blue hero-gm1" style="width:700px;height:500px;top:-100px;right:-150px;"></div>
+  <div class="glow-mesh gm-purple hero-gm2" style="width:500px;height:400px;bottom:-100px;left:-100px;"></div>
+
+  <div class="hero-inner z1">
+    <div class="hero-left">
+      <div class="hero-availability reveal"><span class="dot-live"></span>Taking New Clients — Early Pricing Active</div>
+      <h1 class="reveal rd1">I Build <span class="hl">Systems</span><br>That Grow<br>Businesses</h1>
+      <p class="hero-sub reveal rd2">Websites, apps, lead gen systems & automation — built fast, delivered with results. No fluff, no calls. WhatsApp & email only.</p>
+      <p class="hero-note reveal rd3">Currently onboarding limited clients at <span>early-stage pricing</span>.</p>
+      <div class="hero-ctas reveal rd4">
+        <a href="https://wa.me/917217797821" class="btn btn-wa btn-lg">📲 Start on WhatsApp</a>
+        <a href="#contact" class="btn btn-outline btn-lg">Get Free Strategy →</a>
+      </div>
+      <div class="hero-meta reveal rd5">
+        <span class="hero-meta-item"><span class="hero-meta-icon">⚡</span>5–7 Day Delivery</span>
+        <span class="hero-meta-item"><span class="hero-meta-icon">🚫</span>No Calls Ever</span>
+        <span class="hero-meta-item"><span class="hero-meta-icon">🎯</span>₹19–21 CPL Proven</span>
+      </div>
     </div>
-    <div class="hero-actions">
-      <a href="https://wa.me/917217797821" class="btn-primary">📲 Start on WhatsApp</a>
-      <a href="#growth-plan" class="btn-secondary">Get Free Strategy Plan →</a>
-    </div>
-    <div class="hero-meta">
-      <span class="hero-meta-item"><span class="hero-meta-icon"></span>No Calls — WhatsApp &amp; Email Only</span>
-      <span class="hero-meta-item"><span class="hero-meta-icon"></span>Websites Delivered in 5–7 Days</span>
-      <span class="hero-meta-item"><span class="hero-meta-icon"></span>₹19–21 CPL Proven in Cosmetics</span>
+
+    <div class="hero-right reveal rd2">
+      <div class="float-cards">
+        <div class="fcard fc1" data-tilt>
+          <div class="fcard-glow"></div>
+          <div class="fcard-icon">🌐</div>
+          <div class="fcard-title">Website System</div>
+          <div class="fcard-sub">Landing pages & ecommerce stores that convert</div>
+          <div class="fcard-price">from ₹7,000</div>
+        </div>
+        <div class="fcard fc2" data-tilt>
+          <div class="fcard-glow"></div>
+          <div class="fcard-icon">📣</div>
+          <div class="fcard-title">Lead Gen System</div>
+          <div class="fcard-sub">Meta Ads with proven ₹19–21 CPL results</div>
+          <div class="fcard-price">from ₹3,000</div>
+        </div>
+        <div class="fcard fc3" data-tilt>
+          <div class="fcard-glow"></div>
+          <div class="fcard-icon">🤖</div>
+          <div class="fcard-title">Automation</div>
+          <div class="fcard-sub">WhatsApp + AI lead follow-up, 24/7</div>
+          <div class="fcard-price">from ₹3,000</div>
+        </div>
+        <div class="fcard fc4" data-tilt>
+          <div class="fcard-glow"></div>
+          <div class="fcard-icon">📱</div>
+          <div class="fcard-title">App Development</div>
+          <div class="fcard-sub">Custom mobile & web apps, fast-built</div>
+          <div class="fcard-price">from ₹10,000</div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- MARQUEE -->
-<div class="marquee-section">
-  <div class="marquee-track">
-    <span class="marquee-item">Ecommerce Growth System <span class="marquee-sep">✦</span></span>
-    <span class="marquee-item">Low-CPL Lead Generation <span class="marquee-sep">✦</span></span>
-    <span class="marquee-item">Cosmetics &amp; Beauty Brands <span class="marquee-sep">✦</span></span>
-    <span class="marquee-item">WhatsApp Automation <span class="marquee-sep">✦</span></span>
-    <span class="marquee-item">5–7 Day Website Delivery <span class="marquee-sep">✦</span></span>
-    <span class="marquee-item">Distributor Lead Funnels <span class="marquee-sep">✦</span></span>
-    <span class="marquee-item">Meta Ads — ₹19 CPL <span class="marquee-sep">✦</span></span>
-    <span class="marquee-item">High-Converting Funnels <span class="marquee-sep">✦</span></span>
-    <span class="marquee-item">Ecommerce Growth System <span class="marquee-sep">✦</span></span>
-    <span class="marquee-item">Low-CPL Lead Generation <span class="marquee-sep">✦</span></span>
-    <span class="marquee-item">Cosmetics &amp; Beauty Brands <span class="marquee-sep">✦</span></span>
-    <span class="marquee-item">WhatsApp Automation <span class="marquee-sep">✦</span></span>
-    <span class="marquee-item">5–7 Day Website Delivery <span class="marquee-sep">✦</span></span>
-    <span class="marquee-item">Distributor Lead Funnels <span class="marquee-sep">✦</span></span>
-    <span class="marquee-item">Meta Ads — ₹19 CPL <span class="marquee-sep">✦</span></span>
-    <span class="marquee-item">High-Converting Funnels <span class="marquee-sep">✦</span></span>
+<!-- ═══ TRUST STRIP ═══ -->
+<div class="trust-strip">
+  <div class="trust-inner container">
+    <div class="trust-item reveal">
+      <div class="trust-num">₹<span class="counter hl" data-target="19">0</span></div>
+      <div class="trust-label">Avg CPL — Lead Campaigns</div>
+    </div>
+    <div class="trust-item reveal rd1">
+      <div class="trust-num"><span class="counter" data-target="5">0</span><span>–7</span></div>
+      <div class="trust-label">Days to Website Delivery</div>
+    </div>
+    <div class="trust-item reveal rd2">
+      <div class="trust-num"><span class="counter" data-target="20">0</span><span class="hl">+</span></div>
+      <div class="trust-label">Projects Delivered</div>
+    </div>
+    <div class="trust-item reveal rd3">
+      <div class="trust-num"><span class="counter" data-target="4">0</span></div>
+      <div class="trust-label">System Types Built</div>
+    </div>
   </div>
 </div>
 
-<!-- STATS -->
-<div class="stats-strip">
-  <div class="stat-item reveal">
-    <div class="stat-num">₹<span class="counter" data-target="19">0</span><span class="hl">–21</span></div>
-    <div class="stat-label">Avg CPL — Cosmetics Leads</div>
-  </div>
-  <div class="stat-item reveal reveal-delay-1">
-    <div class="stat-num"><span class="counter" data-target="128">0</span><span class="hl">+</span></div>
-    <div class="stat-label">Leads Generated Across Campaigns</div>
-  </div>
-  <div class="stat-item reveal reveal-delay-2">
-    <div class="stat-num"><span class="counter" data-target="20">0</span><span class="hl">+</span></div>
-    <div class="stat-label">Projects Delivered</div>
-  </div>
-  <div class="stat-item reveal reveal-delay-3">
-    <div class="stat-num"><span class="counter" data-target="5">0</span><span class="hl">–7</span></div>
-    <div class="stat-label">Days to Full Website Delivery</div>
-  </div>
-</div>
+<!-- ═══ SYSTEM BUILDER ═══ -->
+<section class="builder-section" id="builder">
+  <div class="glow-mesh gm-blue builder-gm" style="width:800px;height:600px;top:50%;left:50%;transform:translate(-50%,-50%);"></div>
+  <div class="container z1">
+    <div class="builder-inner">
+      <div class="builder-left">
+        <div class="tag-pill reveal">⚙️ Interactive Builder</div>
+        <h2 class="reveal rd1">Build Your<br>Growth System</h2>
+        <p class="reveal rd2">Select what you need. See your price, timeline, and system flow update in real time.</p>
+        <div class="check-group">
+          <label class="check-item reveal rd2" onclick="toggleCheck(this,'website')">
+            <div class="check-box"><span class="check-box-tick">✓</span></div>
+            <div class="check-info">
+              <div class="check-name">🌐 Website</div>
+              <div class="check-detail">High-converting website or ecommerce store</div>
+            </div>
+            <div class="check-price">₹7K–13K</div>
+          </label>
+          <label class="check-item reveal rd3" onclick="toggleCheck(this,'ads')">
+            <div class="check-box"><span class="check-box-tick">✓</span></div>
+            <div class="check-info">
+              <div class="check-name">📣 Lead Generation</div>
+              <div class="check-detail">Meta Ads — ₹19–21 CPL proven results</div>
+            </div>
+            <div class="check-price">₹3K–5K</div>
+          </label>
+          <label class="check-item reveal rd4" onclick="toggleCheck(this,'automation')">
+            <div class="check-box"><span class="check-box-tick">✓</span></div>
+            <div class="check-info">
+              <div class="check-name">🤖 Automation</div>
+              <div class="check-detail">WhatsApp + AI follow-up system</div>
+            </div>
+            <div class="check-price">₹3K–5K</div>
+          </label>
+          <label class="check-item reveal rd5" onclick="toggleCheck(this,'app')">
+            <div class="check-box"><span class="check-box-tick">✓</span></div>
+            <div class="check-info">
+              <div class="check-name">📱 App Development</div>
+              <div class="check-detail">Custom mobile or web application</div>
+            </div>
+            <div class="check-price">₹10K–18K</div>
+          </label>
+        </div>
+      </div>
 
-<!-- SYSTEMS -->
-<section class="systems" id="systems">
-  <div class="systems-header reveal">
-    <span class="section-label">Productized Systems</span>
-    <h2 class="section-title">Not Services.<br>Complete Growth Systems.</h2>
-    <p class="section-sub">Built specifically for cosmetics, beauty, and ecommerce brands that want real business results — not just deliverables.</p>
-  </div>
-  <div class="systems-grid">
-    <div class="system-card reveal">
-      <span class="sys-num">01</span>
-      <div class="sys-icon">🛒</div>
-      <h3>Ecommerce Growth System</h3>
-      <p class="system-desc">A complete, conversion-engineered ecommerce website with product pages, checkout flow, and trust elements — built to turn traffic into revenue from day one.</p>
-      <div class="sys-bullets">
-        <span class="sys-bullet">High-converting Shopify or custom ecommerce store</span>
-        <span class="sys-bullet">Landing pages built to convert at 3%+</span>
-        <span class="sys-bullet">Mobile-first, speed-optimized build</span>
-        <span class="sys-bullet">For: D2C founders, beauty brands, ecommerce businesses</span>
-      </div>
-      <div class="sys-footer">
-        <span class="sys-deliver">⚡ Delivered in 5–7 Days</span>
-        <span class="sys-arrow">Start →</span>
-      </div>
-    </div>
-    <div class="system-card reveal reveal-delay-1">
-      <span class="sys-num">02</span>
-      <div class="sys-icon">📣</div>
-      <h3>Cosmetics Lead Generation System</h3>
-      <p class="system-desc">Meta Ads strategy plus a custom landing page funnel — specifically engineered for cosmetics & beauty brands to generate distributor or customer leads at ₹19–21 CPL.</p>
-      <div class="sys-bullets">
-        <span class="sys-bullet">Facebook &amp; Instagram ad creatives + copy</span>
-        <span class="sys-bullet">Lead funnel + landing page (built for conversion)</span>
-        <span class="sys-bullet">Proven ₹19–21 CPL in the cosmetics niche</span>
-        <span class="sys-bullet">For: Cosmetics brands, distributors, beauty businesses</span>
-      </div>
-      <div class="sys-footer">
-        <span class="sys-deliver">📊 Results Visible in 7–14 Days</span>
-        <span class="sys-arrow">Start →</span>
-      </div>
-    </div>
-    <div class="system-card reveal reveal-delay-2">
-      <span class="sys-num">03</span>
-      <div class="sys-icon">🤖</div>
-      <h3>Lead Automation System</h3>
-      <p class="system-desc">WhatsApp automation that follows up with every lead instantly — 24/7. No manual work. Leads get nurtured automatically until they're ready to buy or onboard.</p>
-      <div class="sys-bullets">
-        <span class="sys-bullet">Automated WhatsApp follow-up sequences</span>
-        <span class="sys-bullet">Lead nurturing and qualification flows</span>
-        <span class="sys-bullet">CRM integration + notification system</span>
-        <span class="sys-bullet">For: Brands running lead gen at scale</span>
-      </div>
-      <div class="sys-footer">
-        <span class="sys-deliver">⏱ Saves 4+ Hours/Day</span>
-        <span class="sys-arrow">Start →</span>
-      </div>
-    </div>
-    <div class="system-card reveal reveal-delay-3">
-      <span class="sys-num">04</span>
-      <div class="sys-icon">🚀</div>
-      <h3>Full-Stack Growth System</h3>
-      <p class="system-desc">Website + Meta Ads + Automation — the complete growth engine. Every touchpoint optimized. From traffic to lead to customer, fully automated and measurable.</p>
-      <div class="sys-bullets">
-        <span class="sys-bullet">Website + landing page + full funnel</span>
-        <span class="sys-bullet">Meta Ads with ongoing optimization</span>
-        <span class="sys-bullet">WhatsApp automation + lead nurturing</span>
-        <span class="sys-bullet">For: Brands ready to scale aggressively</span>
-      </div>
-      <div class="sys-footer">
-        <span class="sys-deliver">🔥 Most Popular Package</span>
-        <span class="sys-arrow">Start →</span>
+      <div class="builder-right reveal rd2">
+        <div class="builder-output">
+          <div class="bo-header">
+            <span class="bo-title">System Output</span>
+            <span class="bo-status"><span class="dot-live"></span> Live Preview</span>
+          </div>
+          <div class="bo-body" id="bo-body">
+            <div class="bo-empty" id="bo-empty">
+              <div class="bo-empty-icon">⚙️</div>
+              <div class="bo-empty-txt">Select services on the left to see your custom system price, timeline, and flow.</div>
+            </div>
+            <div id="bo-content" style="display:none;">
+              <div class="bo-total-row">
+                <div>
+                  <div class="bo-label">Total Investment</div>
+                  <div class="bo-price" id="bo-price">₹<span class="hl" id="bo-price-val">0</span></div>
+                </div>
+                <div style="text-align:right;">
+                  <div class="bo-label">Timeline</div>
+                  <div class="bo-timeline-row" style="justify-content:flex-end;"><span class="bo-timeline-val" id="bo-timeline">—</span></div>
+                </div>
+              </div>
+              <div class="bo-items" id="bo-items"></div>
+              <div class="bo-flow">
+                <div class="bo-flow-label">Your System Flow</div>
+                <div class="bo-flow-steps" id="bo-flow-steps"></div>
+              </div>
+              <div class="bo-cta">
+                <a href="https://wa.me/917217797821" class="btn btn-solid btn-full" id="bo-wa-btn">Get This System on WhatsApp →</a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- META ADS RESULTS -->
-<section class="ads-section" id="results">
-  <div class="ads-header">
+<!-- ═══ SYSTEM FLOW PIPELINE ═══ -->
+<section class="pipeline-section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="tag-pill" style="margin-bottom:16px;">🔄 How It All Works Together</div>
+      <h2>The Full Growth Pipeline</h2>
+      <p>Every system I build is part of a connected growth engine — from first click to closed client.</p>
+    </div>
+    <div class="pipeline-outer">
+      <div class="pipeline-track" id="pipeline-track">
+        <div class="pipe-node">
+          <div class="pipe-circle" id="pn0">📣</div>
+          <div class="pipe-label">Traffic</div>
+          <div class="pipe-sub">Meta Ads</div>
+        </div>
+        <div class="pipe-connector" id="pc0"><div class="pipe-connector-fill" id="pf0"></div><div class="pipe-dot" id="pd0"></div></div>
+        <div class="pipe-node">
+          <div class="pipe-circle" id="pn1">🌐</div>
+          <div class="pipe-label">Website</div>
+          <div class="pipe-sub">Landing Page</div>
+        </div>
+        <div class="pipe-connector" id="pc1"><div class="pipe-connector-fill" id="pf1"></div><div class="pipe-dot" id="pd1"></div></div>
+        <div class="pipe-node">
+          <div class="pipe-circle" id="pn2">📋</div>
+          <div class="pipe-label">Lead Form</div>
+          <div class="pipe-sub">Capture Data</div>
+        </div>
+        <div class="pipe-connector" id="pc2"><div class="pipe-connector-fill" id="pf2"></div><div class="pipe-dot" id="pd2"></div></div>
+        <div class="pipe-node">
+          <div class="pipe-circle" id="pn3">🤖</div>
+          <div class="pipe-label">Automation</div>
+          <div class="pipe-sub">Instant Reply</div>
+        </div>
+        <div class="pipe-connector" id="pc3"><div class="pipe-connector-fill" id="pf3"></div><div class="pipe-dot" id="pd3"></div></div>
+        <div class="pipe-node">
+          <div class="pipe-circle" id="pn4">💬</div>
+          <div class="pipe-label">WhatsApp</div>
+          <div class="pipe-sub">Nurture Lead</div>
+        </div>
+        <div class="pipe-connector" id="pc4"><div class="pipe-connector-fill" id="pf4"></div><div class="pipe-dot" id="pd4"></div></div>
+        <div class="pipe-node">
+          <div class="pipe-circle" id="pn5">✅</div>
+          <div class="pipe-label">Conversion</div>
+          <div class="pipe-sub">Closed Client</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ APP DEMO ═══ -->
+<section class="demo-section">
+  <div class="container">
+    <div class="demo-inner">
+      <div class="demo-text reveal">
+        <div class="tag-pill" style="margin-bottom:20px;">📱 App Development</div>
+        <h2>Custom Apps Built<br>for Your Business</h2>
+        <p>From customer-facing apps to internal dashboards — I build fast, clean, and production-ready. Delivered in 15–20 days.</p>
+        <div class="demo-features">
+          <div class="demo-feat">
+            <div class="demo-feat-icon">📊</div>
+            <div class="demo-feat-text">
+              <strong>Live Dashboards</strong>
+              <span>Real-time metrics, lead tracking, and business analytics built in.</span>
+            </div>
+          </div>
+          <div class="demo-feat">
+            <div class="demo-feat-icon">🔔</div>
+            <div class="demo-feat-text">
+              <strong>Push Notifications</strong>
+              <span>Automated alerts for new leads, orders, and critical events.</span>
+            </div>
+          </div>
+          <div class="demo-feat">
+            <div class="demo-feat-icon">⚙️</div>
+            <div class="demo-feat-text">
+              <strong>AI-Powered Logic</strong>
+              <span>Smart workflows and automation baked directly into your app.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-wrap reveal rd2">
+        <div class="phone" id="demo-phone">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+            <div class="phone-status">
+              <span>9:41</span>
+              <span>●●● 100%</span>
+            </div>
+            <div class="phone-content">
+              <div class="app-bar">
+                <div class="app-bar-icon">📊</div>
+                <div class="app-bar-text">
+                  <div class="abt">Business Dashboard</div>
+                  <div class="abs">Live · Updated now</div>
+                </div>
+              </div>
+              <div class="app-card">
+                <div class="app-card-label">Total Leads Today</div>
+                <div class="app-card-val" id="app-leads">0</div>
+                <div class="app-card-change">↑ 34% vs yesterday</div>
+              </div>
+              <div class="app-mini-row">
+                <div class="app-mini">
+                  <div class="app-mini-label">CPL</div>
+                  <div class="app-mini-val cyan">₹19</div>
+                </div>
+                <div class="app-mini">
+                  <div class="app-mini-label">Conv %</div>
+                  <div class="app-mini-val">3.2%</div>
+                </div>
+              </div>
+              <div class="phone-bar-container">
+                <div class="pbar-label"><span>Budget Used</span><span id="app-budget-pct">0%</span></div>
+                <div class="pbar"><div class="pbar-fill" id="app-pbar" style="width:0%"></div></div>
+                <div class="pbar-label"><span>Leads Reached</span><span id="app-leads-pct">0%</span></div>
+                <div class="pbar"><div class="pbar-fill" id="app-pbar2" style="width:0%;background:linear-gradient(90deg,var(--purple),var(--cyan));"></div></div>
+              </div>
+              <div class="app-mini-row">
+                <div class="app-mini">
+                  <div class="app-mini-label">Reach</div>
+                  <div class="app-mini-val">40K</div>
+                </div>
+                <div class="app-mini">
+                  <div class="app-mini-label">ROAS</div>
+                  <div class="app-mini-val cyan">4.2×</div>
+                </div>
+              </div>
+            </div>
+            <div class="phone-nav">
+              <span>🏠</span><span>📊</span><span>💬</span><span>⚙️</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ RESULTS ═══ -->
+<section class="results-section" id="results">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="tag-pill" style="margin-bottom:16px;">📈 Real Campaign Data</div>
+      <h2>Real Numbers.<br>Real Campaigns.</h2>
+      <p>Live data from active campaigns — not estimates or projections.</p>
+    </div>
+    <div class="results-grid-3" style="margin-bottom:24px;">
+      <div class="kpi-mini reveal">
+        <div class="kpi-mini-val cyan">₹<span class="counter" data-target="20">0</span></div>
+        <div class="kpi-mini-label">Avg Cost Per Lead</div>
+        <div class="kpi-mini-change">↓ 68% below industry avg</div>
+      </div>
+      <div class="kpi-mini reveal rd1">
+        <div class="kpi-mini-val green"><span class="counter" data-target="128">0</span>+</div>
+        <div class="kpi-mini-label">Leads Generated</div>
+        <div class="kpi-mini-change">↑ across 3 live campaigns</div>
+      </div>
+      <div class="kpi-mini reveal rd2">
+        <div class="kpi-mini-val"><span class="counter" data-target="615">0</span></div>
+        <div class="kpi-mini-label">Landing Page Views</div>
+        <div class="kpi-mini-change">@ ₹1.13 per view</div>
+      </div>
+    </div>
+    <div class="results-grid">
+      <div class="chart-card reveal">
+        <h4>My CPL vs Industry Benchmarks</h4>
+        <p>Cosmetics & lead gen niche — lower is better</p>
+        <canvas id="cplChart" height="200"></canvas>
+      </div>
+      <div class="chart-card reveal rd1">
+        <h4>Lead Volume Growth</h4>
+        <p>Cumulative leads across all active campaigns</p>
+        <canvas id="leadsChart" height="200"></canvas>
+      </div>
+    </div>
+    <div class="chart-card reveal" style="margin-top:24px;">
+      <h4>Before vs After — Typical Client Transformation</h4>
+      <p>What changes when you run a focused growth system</p>
+      <table class="ba-table">
+        <thead><tr><th>Metric</th><th>Before</th><th>After Working With Me</th><th>Improvement</th></tr></thead>
+        <tbody>
+          <tr><td>Cost Per Lead</td><td class="val-bad">₹80–150</td><td class="val-good">₹19–21</td><td><span class="pill-green">↓ 75%</span></td></tr>
+          <tr><td>Monthly Leads</td><td class="val-bad">5–15</td><td class="val-good">60–80</td><td><span class="pill-green">↑ 5×</span></td></tr>
+          <tr><td>Ad Reach</td><td class="val-bad">2K–5K</td><td class="val-good">32K–41K</td><td><span class="pill-green">↑ 8×</span></td></tr>
+          <tr><td>Lead Response Time</td><td class="val-bad">Hours / Days</td><td class="val-good">Under 2 Minutes</td><td><span class="pill-green">Automated</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ BEFORE / AFTER ═══ -->
+<section class="ba-section">
+  <div class="container">
+    <div class="ba-inner">
+      <div class="ba-demo reveal">
+        <div class="ba-demo-header">
+          <div class="ba-dots"><div class="ba-dot bd1"></div><div class="ba-dot bd2"></div><div class="ba-dot bd3"></div></div>
+          <span class="ba-demo-title">Drag to compare</span>
+        </div>
+        <div class="slider-container" id="slider-cont">
+          <div class="slider-panel slider-panel-before" id="sp-before">
+            <div style="padding:24px;height:100%;display:flex;flex-direction:column;justify-content:center;">
+              <div style="font-size:11px;color:var(--red);font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;">BEFORE</div>
+              <div style="font-family:var(--font-head);font-size:22px;font-weight:800;color:var(--red);letter-spacing:-1px;margin-bottom:6px;">₹120 CPL</div>
+              <div style="font-size:12px;color:var(--muted2);line-height:1.7;">• 5–10 leads/month<br>• No follow-up system<br>• Manual everything<br>• Low-quality leads</div>
+            </div>
+          </div>
+          <div class="slider-panel slider-panel-after" id="sp-after">
+            <div style="padding:24px;height:100%;display:flex;flex-direction:column;justify-content:center;padding-left:calc(50% + 24px);">
+              <div style="font-size:11px;color:var(--green);font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;">AFTER</div>
+              <div style="font-family:var(--font-head);font-size:22px;font-weight:800;color:var(--green);letter-spacing:-1px;margin-bottom:6px;">₹19 CPL</div>
+              <div style="font-size:12px;color:var(--muted2);line-height:1.7;">• 60–80 leads/month<br>• Instant WhatsApp follow-up<br>• Fully automated<br>• High-intent leads</div>
+            </div>
+          </div>
+          <div class="slider-handle" id="slider-handle">
+            <div class="slider-knob">⇌</div>
+          </div>
+          <div class="slider-label sl-before-label">BEFORE</div>
+          <div class="slider-label sl-after-label">AFTER</div>
+        </div>
+        <div class="metric-grid">
+          <div class="metric-card">
+            <div class="mc-label">Cost Per Lead</div>
+            <div class="mc-row"><span class="mc-before">₹120</span><span class="mc-arrow">→</span><span class="mc-after">₹19</span></div>
+          </div>
+          <div class="metric-card">
+            <div class="mc-label">Monthly Leads</div>
+            <div class="mc-row"><span class="mc-before">10</span><span class="mc-arrow">→</span><span class="mc-after">70+</span></div>
+          </div>
+          <div class="metric-card">
+            <div class="mc-label">Response Time</div>
+            <div class="mc-row"><span class="mc-before">Hours</span><span class="mc-arrow">→</span><span class="mc-after">&lt;2 min</span></div>
+          </div>
+          <div class="metric-card">
+            <div class="mc-label">Ad Reach</div>
+            <div class="mc-row"><span class="mc-before">3K</span><span class="mc-arrow">→</span><span class="mc-after">40K+</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="ba-text reveal rd2">
+        <div class="tag-pill" style="margin-bottom:18px;">📊 Client Transformations</div>
+        <h2>This Is What<br>Strategy Does</h2>
+        <p>Most businesses are burning budget on poorly structured ads with no follow-up system. I fix the entire pipeline — not just the ads.</p>
+        <div class="ba-stat-row">
+          <div class="ba-stat">
+            <div class="ba-stat-num green">↓75%</div>
+            <div class="ba-stat-label">CPL Reduction</div>
+          </div>
+          <div class="ba-stat">
+            <div class="ba-stat-num">5×</div>
+            <div class="ba-stat-label">More Leads/Month</div>
+          </div>
+          <div class="ba-stat">
+            <div class="ba-stat-num green">+40%</div>
+            <div class="ba-stat-label">Revenue Growth</div>
+          </div>
+        </div>
+        <div style="margin-top:28px;">
+          <a href="#contact" class="btn btn-solid btn-lg">Get This For My Business →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRICING ═══ -->
+<section class="pricing-section" id="pricing">
+  <div class="glow-mesh gm-purple pricing-gm"></div>
+  <div class="container z1">
+    <div class="section-head reveal">
+      <div class="tag-pill" style="margin-bottom:16px;">💰 Transparent Pricing</div>
+      <h2>Simple. Honest.<br>No Hidden Fees.</h2>
+      <p>Pick your system below. All prices are fixed — no surprises, no upsells.</p>
+    </div>
+    <div class="pricing-early reveal">🕐 Currently onboarding a limited number of clients at early-stage pricing.</div>
+    <div class="pricing-tabs reveal">
+      <button class="ptab active" onclick="switchTab('websites',this)">🌐 Websites</button>
+      <button class="ptab" onclick="switchTab('leads',this)">📣 Lead Gen</button>
+      <button class="ptab" onclick="switchTab('automation',this)">🤖 Automation</button>
+      <button class="ptab" onclick="switchTab('apps',this)">📱 Apps</button>
+    </div>
+    <div class="pricing-panels">
+
+      <!-- WEBSITES -->
+      <div class="panel active" id="panel-websites">
+        <div class="pricing-cards reveal">
+          <div class="p-card">
+            <div class="p-card-icon">🌐</div>
+            <div class="p-card-name">Starter Website</div>
+            <div class="p-card-sub">Clean, professional website — perfect for small businesses and service providers getting online.</div>
+            <div class="p-price">
+              <div class="p-price-val"><span class="curr">₹</span>7,000</div>
+              <div class="p-price-note">One-time payment</div>
+            </div>
+            <div class="p-deliver">⚡ Delivery: <span class="p-deliver-val">5–7 Days</span></div>
+            <div class="p-features">
+              <div class="p-feat">Up to 5 pages</div>
+              <div class="p-feat">Mobile responsive design</div>
+              <div class="p-feat">Contact form + WhatsApp integration</div>
+              <div class="p-feat">Basic SEO setup</div>
+              <div class="p-feat">1 revision round</div>
+            </div>
+            <a href="https://wa.me/917217797821" class="btn btn-outline btn-full p-cta">Get Started →</a>
+          </div>
+          <div class="p-card popular">
+            <div class="p-popular-tag">Most Popular</div>
+            <div class="p-card-icon">🚀</div>
+            <div class="p-card-name">High-Converting Website</div>
+            <div class="p-card-sub">Conversion-engineered website with full funnel, landing pages, and ecommerce ready.</div>
+            <div class="p-price">
+              <div class="p-price-val"><span class="curr">₹</span>13,000</div>
+              <div class="p-price-note">One-time payment</div>
+            </div>
+            <div class="p-deliver">⚡ Delivery: <span class="p-deliver-val">5–7 Days</span></div>
+            <div class="p-features">
+              <div class="p-feat">Unlimited pages</div>
+              <div class="p-feat">Ecommerce / Shopify ready</div>
+              <div class="p-feat">Custom landing pages</div>
+              <div class="p-feat">WhatsApp automation integration</div>
+              <div class="p-feat">Full SEO + analytics setup</div>
+              <div class="p-feat">3 revision rounds</div>
+            </div>
+            <a href="https://wa.me/917217797821" class="btn btn-solid btn-full p-cta">Get Started →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- LEAD GEN -->
+      <div class="panel" id="panel-leads">
+        <div class="pricing-note reveal">* Ad spend is <strong>not included</strong> in these prices. Recommended: ₹10,000–15,000/month ad budget.</div>
+        <div class="pricing-cards reveal rd1">
+          <div class="p-card">
+            <div class="p-card-icon">📣</div>
+            <div class="p-card-name">Lead Gen Setup</div>
+            <div class="p-card-sub">Campaign setup + ad creatives + basic targeting. Great for testing the channel.</div>
+            <div class="p-price">
+              <div class="p-price-val"><span class="curr">₹</span>3,000</div>
+              <div class="p-price-note">Setup fee, one-time</div>
+            </div>
+            <div class="p-deliver">⚡ Delivery: <span class="p-deliver-val">3–4 Days</span></div>
+            <div class="p-features">
+              <div class="p-feat">Facebook & Instagram campaigns</div>
+              <div class="p-feat">2 ad creatives</div>
+              <div class="p-feat">Audience research + targeting</div>
+              <div class="p-feat">Basic lead form setup</div>
+              <div class="p-feat">7-day performance check</div>
+            </div>
+            <a href="https://wa.me/917217797821" class="btn btn-outline btn-full p-cta">Get Started →</a>
+          </div>
+          <div class="p-card popular">
+            <div class="p-popular-tag">Most Popular</div>
+            <div class="p-card-icon">🎯</div>
+            <div class="p-card-name">Lead Generation System</div>
+            <div class="p-card-sub">Full system: custom landing page + Meta Ads + retargeting + optimization. Proven ₹19–21 CPL.</div>
+            <div class="p-price">
+              <div class="p-price-val"><span class="curr">₹</span>5,000</div>
+              <div class="p-price-note">Setup fee, one-time</div>
+            </div>
+            <div class="p-deliver">⚡ Delivery: <span class="p-deliver-val">3–4 Days</span></div>
+            <div class="p-features">
+              <div class="p-feat">Custom landing page built</div>
+              <div class="p-feat">4+ ad creative variations</div>
+              <div class="p-feat">Retargeting campaigns</div>
+              <div class="p-feat">A/B testing setup</div>
+              <div class="p-feat">WhatsApp lead notification</div>
+              <div class="p-feat">30-day optimization included</div>
+            </div>
+            <a href="https://wa.me/917217797821" class="btn btn-solid btn-full p-cta">Get Started →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- AUTOMATION -->
+      <div class="panel" id="panel-automation">
+        <div class="pricing-cards reveal">
+          <div class="p-card">
+            <div class="p-card-icon">🤖</div>
+            <div class="p-card-name">Basic Automation</div>
+            <div class="p-card-sub">Simple WhatsApp auto-reply and lead notification system. Instant response to every inquiry.</div>
+            <div class="p-price">
+              <div class="p-price-val"><span class="curr">₹</span>3,000</div>
+              <div class="p-price-note">One-time setup</div>
+            </div>
+            <div class="p-deliver">⚡ Delivery: <span class="p-deliver-val">3–5 Days</span></div>
+            <div class="p-features">
+              <div class="p-feat">WhatsApp instant reply</div>
+              <div class="p-feat">Lead notification system</div>
+              <div class="p-feat">Basic follow-up sequence</div>
+              <div class="p-feat">Form-to-WhatsApp integration</div>
+            </div>
+            <a href="https://wa.me/917217797821" class="btn btn-outline btn-full p-cta">Get Started →</a>
+          </div>
+          <div class="p-card popular">
+            <div class="p-popular-tag">Most Popular</div>
+            <div class="p-card-icon">⚡</div>
+            <div class="p-card-name">Advanced Automation</div>
+            <div class="p-card-sub">Full AI-powered follow-up system that nurtures every lead automatically until conversion.</div>
+            <div class="p-price">
+              <div class="p-price-val"><span class="curr">₹</span>5,000</div>
+              <div class="p-price-note">One-time setup</div>
+            </div>
+            <div class="p-deliver">⚡ Delivery: <span class="p-deliver-val">3–5 Days</span></div>
+            <div class="p-features">
+              <div class="p-feat">AI-powered WhatsApp chatbot</div>
+              <div class="p-feat">Multi-step follow-up sequences</div>
+              <div class="p-feat">Lead qualification automation</div>
+              <div class="p-feat">CRM integration</div>
+              <div class="p-feat">Appointment scheduling bot</div>
+              <div class="p-feat">24/7 automated responses</div>
+            </div>
+            <a href="https://wa.me/917217797821" class="btn btn-solid btn-full p-cta">Get Started →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- APPS -->
+      <div class="panel" id="panel-apps">
+        <div class="pricing-cards reveal">
+          <div class="p-card">
+            <div class="p-card-icon">📱</div>
+            <div class="p-card-name">Basic App</div>
+            <div class="p-card-sub">Clean, functional mobile or web app for a focused use case — booking, directory, dashboard, or catalog.</div>
+            <div class="p-price">
+              <div class="p-price-val"><span class="curr">₹</span>10,000</div>
+              <div class="p-price-note">One-time payment</div>
+            </div>
+            <div class="p-deliver">⚡ Delivery: <span class="p-deliver-val">15–20 Days</span></div>
+            <div class="p-features">
+              <div class="p-feat">Up to 10 screens</div>
+              <div class="p-feat">iOS + Android (React Native)</div>
+              <div class="p-feat">Basic backend & database</div>
+              <div class="p-feat">User authentication</div>
+              <div class="p-feat">App Store submission guidance</div>
+            </div>
+            <a href="https://wa.me/917217797821" class="btn btn-outline btn-full p-cta">Get Started →</a>
+          </div>
+          <div class="p-card popular">
+            <div class="p-popular-tag">Most Popular</div>
+            <div class="p-card-icon">🚀</div>
+            <div class="p-card-name">Advanced App</div>
+            <div class="p-card-sub">Full-featured app with integrations, payments, AI features, and real-time dashboards. Production-ready.</div>
+            <div class="p-price">
+              <div class="p-price-val"><span class="curr">₹</span>18,000</div>
+              <div class="p-price-note">One-time payment</div>
+            </div>
+            <div class="p-deliver">⚡ Delivery: <span class="p-deliver-val">15–20 Days</span></div>
+            <div class="p-features">
+              <div class="p-feat">Unlimited screens</div>
+              <div class="p-feat">Payment gateway integration</div>
+              <div class="p-feat">AI-powered features</div>
+              <div class="p-feat">Real-time notifications</div>
+              <div class="p-feat">Admin dashboard included</div>
+              <div class="p-feat">3 months post-launch support</div>
+            </div>
+            <a href="https://wa.me/917217797821" class="btn btn-solid btn-full p-cta">Get Started →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DELIVERY TIMELINE ═══ -->
+<section class="timeline-section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="tag-pill" style="margin-bottom:16px;">⚡ Fast Turnaround</div>
+      <h2>Delivery Timelines</h2>
+      <p>I build fast. No unnecessary delays, no project dragging. Every system has a clear timeline.</p>
+    </div>
+    <div class="timeline-cards">
+      <div class="tl-card reveal">
+        <div class="tl-icon">🌐</div>
+        <div class="tl-service">Website</div>
+        <div class="tl-days">5–7 days</div>
+        <div class="tl-note">From deposit to live</div>
+      </div>
+      <div class="tl-card reveal rd1">
+        <div class="tl-icon">📣</div>
+        <div class="tl-service">Lead Gen Ads</div>
+        <div class="tl-days">3–4 days</div>
+        <div class="tl-note">Campaigns live in days</div>
+      </div>
+      <div class="tl-card reveal rd2">
+        <div class="tl-icon">🤖</div>
+        <div class="tl-service">Automation</div>
+        <div class="tl-days">3–5 days</div>
+        <div class="tl-note">Full system deployed</div>
+      </div>
+      <div class="tl-card reveal rd3">
+        <div class="tl-icon">📱</div>
+        <div class="tl-service">App</div>
+        <div class="tl-days">15–20 days</div>
+        <div class="tl-note">Full production build</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ WHY WORK WITH ME ═══ -->
+<section class="why-section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="tag-pill" style="margin-bottom:16px;">💡 Why Choose Me</div>
+      <h2>Why Work With Me</h2>
+      <p>I'm not a typical freelancer. I think in systems, move fast, and communicate without friction.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-icon">⚡</div>
+        <div class="why-title">Fast Delivery — Always</div>
+        <div class="why-text">Most freelancers take weeks. I deliver websites in 5–7 days, ads in 3–4 days, automations in 3–5. Speed is built into my process — not an afterthought.</div>
+      </div>
+      <div class="why-card reveal rd1">
+        <div class="why-icon">🚫📞</div>
+        <div class="why-title">No Calls — Ever</div>
+        <div class="why-text">Everything happens via WhatsApp and email. Faster, documented, and more efficient. You get my full attention through messages — not 1-hour discovery calls that go nowhere.</div>
+      </div>
+      <div class="why-card reveal rd2">
+        <div class="why-icon">⚙️</div>
+        <div class="why-title">Systems Thinking</div>
+        <div class="why-text">I don't just build deliverables — I build growth systems. Every website, ad campaign, and automation is part of a connected pipeline designed to convert end-to-end.</div>
+      </div>
+      <div class="why-card reveal rd3">
+        <div class="why-icon">🤖</div>
+        <div class="why-title">AI-Powered Workflows</div>
+        <div class="why-text">I integrate AI into everything I build — faster follow-ups, smarter automations, AI-enhanced creatives. You get the technology advantage without needing to understand the tech.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ WHO I WORK WITH ═══ -->
+<section class="who-section" id="work">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="tag-pill" style="margin-bottom:16px;">🤝 Who I Work With</div>
+      <h2>Built for Businesses<br>Ready to Grow</h2>
+      <p>I work with businesses of all types — if you need a system that generates results, we're a fit.</p>
+    </div>
+    <div class="who-tags">
+      <span class="who-tag reveal">🏪 Startups & Founders</span>
+      <span class="who-tag reveal rd1">🛒 Ecommerce Brands</span>
+      <span class="who-tag reveal rd2">💄 Cosmetics & Beauty</span>
+      <span class="who-tag reveal rd3">🏥 Clinics & Healthcare</span>
+      <span class="who-tag reveal rd1">🏗️ Real Estate</span>
+      <span class="who-tag reveal rd2">🍽️ Food & Restaurants</span>
+      <span class="who-tag reveal rd3">📚 EdTech & Coaching</span>
+      <span class="who-tag reveal">💼 Service Businesses</span>
+      <span class="who-tag reveal rd1">🏭 Distributors & B2B</span>
+      <span class="who-tag reveal rd2">🎨 Creative Agencies</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CASE STUDIES ═══ -->
+<section class="cases-section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="tag-pill" style="margin-bottom:16px;">📁 Case Studies</div>
+      <h2>Work That Delivered Results</h2>
+      <p>Hover to reveal results. These are real projects, real clients, real outcomes.</p>
+    </div>
+    <div class="cases-grid">
+      <div class="case-card reveal">
+        <div class="case-thumb" style="background:linear-gradient(135deg,#0f1729,#1e3a5f);">
+          <span style="position:relative;z-index:1;">🌿</span>
+          <div class="case-overlay">
+            <span class="badge badge-green" style="font-size:13px;padding:8px 16px;">First sale in 48 hrs</span>
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="case-tag">Ecommerce Website</div>
+          <div class="case-title">Anaya Naturals</div>
+          <div class="case-result">↑ Consistent orders within 3 weeks</div>
+          <div class="case-desc">Built a full Shopify ecommerce store from scratch. Client got their first organic sale within 48 hours of going live.</div>
+        </div>
+      </div>
+      <div class="case-card reveal rd1">
+        <div class="case-thumb" style="background:linear-gradient(135deg,#150a2a,#2d1b5e);">
+          <span style="position:relative;z-index:1;">🧬</span>
+          <div class="case-overlay">
+            <span class="badge badge-cyan" style="font-size:13px;padding:8px 16px;">67 leads @ ₹20 CPL</span>
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="case-tag">Lead Gen System + Website</div>
+          <div class="case-title">Dermacells</div>
+          <div class="case-result">↑ 67 distributor leads in 30 days</div>
+          <div class="case-desc">Meta Ads + landing page built together as one system. Previous agency: ₹120+ CPL. With me: ₹20.35 CPL — 5× more leads at the same budget.</div>
+        </div>
+      </div>
+      <div class="case-card reveal rd2">
+        <div class="case-thumb" style="background:linear-gradient(135deg,#0d1f1a,#1a3d2e);">
+          <span style="position:relative;z-index:1;">✨</span>
+          <div class="case-overlay">
+            <span class="badge badge-green" style="font-size:13px;padding:8px 16px;">+40% revenue in 60 days</span>
+          </div>
+        </div>
+        <div class="case-body">
+          <div class="case-tag">Ecommerce + Automation</div>
+          <div class="case-title">Glamcos Store</div>
+          <div class="case-result">↑ Revenue up 40% in 60 days</div>
+          <div class="case-desc">Full ecommerce store + WhatsApp automation for lead follow-up. Every inquiry gets an instant automated response — 24/7, no manual work.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<section class="testi-section">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="tag-pill" style="margin-bottom:16px;">⭐ Client Feedback</div>
+      <h2>What Clients Say</h2>
+      <p>Real feedback from business owners who've seen real results.</p>
+    </div>
+    <div class="testi-grid">
+      <div class="tcard reveal">
+        <div class="tcard-stars">★★★★★</div>
+        <div class="tcard-result">First sale within 48 hrs of launch</div>
+        <div class="tcard-text">Lakshay built our Shopify store from scratch and within 3 weeks we were getting consistent orders. Delivered fast, communicated entirely through WhatsApp — super smooth process.</div>
+        <div class="tcard-author">
+          <div class="tcard-avatar">PS</div>
+          <div><div class="tcard-name">Priya Sharma</div><div class="tcard-role">Founder, Anaya Naturals</div></div>
+        </div>
+      </div>
+      <div class="tcard reveal rd1">
+        <div class="tcard-stars">★★★★★</div>
+        <div class="tcard-result">67 leads @ ₹20 CPL — was ₹120+ before</div>
+        <div class="tcard-text">The Meta Ads generated 67 distributor leads in the first month at under ₹21 per lead. Our previous agency was charging ₹120+ CPL. We scaled our network fast.</div>
+        <div class="tcard-author">
+          <div class="tcard-avatar">RG</div>
+          <div><div class="tcard-name">Rahul Gupta</div><div class="tcard-role">Director, Distribution Co.</div></div>
+        </div>
+      </div>
+      <div class="tcard reveal rd2">
+        <div class="tcard-stars">★★★★★</div>
+        <div class="tcard-result">Revenue up 40% in 60 days</div>
+        <div class="tcard-text">He set up automations so WhatsApp follows up with every lead automatically. It's like having a salesperson who never sleeps. Revenue jumped 40% in just 60 days.</div>
+        <div class="tcard-author">
+          <div class="tcard-avatar">NK</div>
+          <div><div class="tcard-name">Neha Kapoor</div><div class="tcard-role">CEO, Glamcos Store</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ LEAD FORM ═══ -->
+<section class="form-section" id="contact">
+  <div class="glow-mesh gm-blue form-gm"></div>
+  <div class="container z1">
+    <div class="form-inner">
+      <div class="form-left reveal">
+        <div class="tag-pill" style="margin-bottom:18px;">📋 Free Strategy Plan</div>
+        <h2>Get Your Free<br>Growth Plan<br>in 24 Hours</h2>
+        <p>Tell me about your business. I'll send a custom strategy — what I'd build, how I'd grow you, and what it costs. No obligation.</p>
+        <div class="trust-list">
+          <div class="trust-item-row"><div class="trust-item-icon">🚫</div><strong>No Calls — WhatsApp &amp; Email Only</strong></div>
+          <div class="trust-item-row"><div class="trust-item-icon">⚡</div><strong>Response Within 24 Hours</strong></div>
+          <div class="trust-item-row"><div class="trust-item-icon">🎯</div><strong>Custom Plan — Not Generic Advice</strong></div>
+          <div class="trust-item-row"><div class="trust-item-icon">💰</div><strong>Zero Obligation. Zero Spam.</strong></div>
+        </div>
+      </div>
+      <div class="reveal rd2">
+        <div class="the-form">
+          <h3>Get My Free Growth Plan</h3>
+          <p class="form-sub">I'll review your business and reply on WhatsApp within 24 hours.</p>
+          <div class="fg"><label>Your Name</label><input type="text" id="f-name" placeholder="e.g. Rahul Sharma"></div>
+          <div class="fg"><label>Business Type</label>
+            <select id="f-biz">
+              <option value="" disabled selected>Select business type</option>
+              <option>Ecommerce / D2C Brand</option>
+              <option>Cosmetics / Beauty</option>
+              <option>Service Business</option>
+              <option>Startup / App idea</option>
+              <option>Clinic / Healthcare</option>
+              <option>Real Estate</option>
+              <option>Food & Restaurant</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="fg"><label>Monthly Budget</label>
+            <select id="f-budget">
+              <option value="" disabled selected>Select budget range</option>
+              <option>Below ₹10,000</option>
+              <option>₹10,000 – ₹25,000</option>
+              <option>₹25,000 – ₹50,000</option>
+              <option>₹50,000 – ₹1,00,000</option>
+              <option>₹1,00,000+</option>
+            </select>
+          </div>
+          <div class="fg"><label>What Do You Need?</label>
+            <select id="f-goal">
+              <option value="" disabled selected>Primary goal</option>
+              <option>New website or ecommerce store</option>
+              <option>More leads via Meta Ads</option>
+              <option>WhatsApp automation system</option>
+              <option>Mobile or web app</option>
+              <option>Full growth system (everything)</option>
+            </select>
+          </div>
+          <button class="btn btn-solid btn-full btn-lg form-btn" id="form-btn">Send My Free Growth Plan →</button>
+          <p class="form-note-txt">📲 I'll WhatsApp you within 24 hours. No spam — ever.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FINAL CTA ═══ -->
+<section class="cta-final">
+  <div class="glow-mesh gm-blue cta-final-gm"></div>
+  <div class="glow-mesh gm-purple" style="width:600px;height:400px;bottom:-100px;right:-100px;"></div>
+  <div class="container z1">
     <div class="reveal">
-      <span class="section-label">Live Campaign Data</span>
-      <h2 class="section-title">Real Numbers.<br>Real Campaigns.</h2>
-      <p class="section-sub">Actual data from live campaigns in the cosmetics niche — not estimates or projections.</p>
-    </div>
-    <a href="https://wa.me/917217797821" class="btn-ghost reveal">Run Ads For Me →</a>
-  </div>
-
-  <div class="kpi-row">
-    <div class="kpi-card reveal">
-      <div class="kpi-label">Avg. Cost Per Lead</div>
-      <div class="kpi-val">₹<span class="counter" data-target="20">0</span></div>
-      <div class="kpi-change">↓ 68% below industry average of ₹65+</div>
-    </div>
-    <div class="kpi-card reveal reveal-delay-1">
-      <div class="kpi-label">Total Leads Generated</div>
-      <div class="kpi-val"><span class="counter" data-target="128">0</span>+</div>
-      <div class="kpi-change">↑ across 3 active cosmetics campaigns</div>
-    </div>
-    <div class="kpi-card reveal reveal-delay-2">
-      <div class="kpi-label">Landing Page Views</div>
-      <div class="kpi-val"><span class="counter" data-target="615">0</span></div>
-      <div class="kpi-change">@ ₹1.13 per view — traffic campaign</div>
-    </div>
-  </div>
-
-  <div class="ads-grid">
-    <div class="chart-box reveal">
-      <h4>My CPL vs Industry Average</h4>
-      <p>Cosmetics &amp; beauty niche benchmark — lower is better</p>
-      <canvas id="cplChart" height="220"></canvas>
-    </div>
-    <div class="chart-box reveal reveal-delay-1">
-      <h4>Lead Volume Growth Over Time</h4>
-      <p>Combined leads across all active campaigns</p>
-      <canvas id="leadsChart" height="220"></canvas>
-    </div>
-  </div>
-
-  <div class="chart-box reveal" style="margin-top:16px;">
-    <h4>Before vs After — Typical Client Results</h4>
-    <p>What changes when you run ads with a focused strategy</p>
-    <table class="ba-table">
-      <thead><tr><th>Metric</th><th>Before (No Strategy)</th><th>After (With Me)</th><th>Improvement</th></tr></thead>
-      <tbody>
-        <tr><td>Cost Per Lead</td><td class="before">₹80 – 150</td><td class="after">₹19 – 21</td><td><span class="change-pill">↓ 75%</span></td></tr>
-        <tr><td>Monthly Leads</td><td class="before">5 – 15</td><td class="after">60 – 80</td><td><span class="change-pill">↑ 5×</span></td></tr>
-        <tr><td>Ad Reach</td><td class="before">2,000 – 5,000</td><td class="after">32,000 – 41,000</td><td><span class="change-pill">↑ 8×</span></td></tr>
-        <tr><td>Landing Page CTR</td><td class="before">0.8%</td><td class="after">3.2%</td><td><span class="change-pill">↑ 4×</span></td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="camp-grid">
-    <div class="campaign-card reveal">
-      <div class="camp-header"><span class="camp-name">Botox Combo Traffic</span><span class="camp-status">● Live</span></div>
-      <div class="camp-metrics">
-        <div class="camp-metric"><div class="camp-metric-label">Views</div><div class="camp-metric-val green">615</div></div>
-        <div class="camp-metric"><div class="camp-metric-label">CPV</div><div class="camp-metric-val green">₹1.13</div></div>
-        <div class="camp-metric"><div class="camp-metric-label">Reach</div><div class="camp-metric-val">40.9K</div></div>
+      <div class="tag-pill" style="margin:0 auto 24px;display:table;">🚀 Ready to Scale?</div>
+      <h2>Let's Build Your<br><span class="hl">Growth System</span></h2>
+      <p>No calls. No delays. Just execution. I build fast, deliver results, and communicate through WhatsApp.</p>
+      <p class="sub-note">For <span>startups</span>, <span>ecommerce brands</span>, <span>service businesses</span>, and anyone ready to grow.</p>
+      <div class="cta-btns">
+        <a href="https://wa.me/917217797821" class="btn btn-wa btn-lg">📲 WhatsApp Me Now</a>
+        <a href="#contact" class="btn btn-outline btn-lg">Get Free Strategy Plan →</a>
       </div>
-      <div><div class="progress-label"><span>Budget Efficiency</span><span>94%</span></div><div class="progress-bar"><div class="progress-fill" data-width="94"></div></div></div>
-    </div>
-    <div class="campaign-card reveal reveal-delay-1">
-      <div class="camp-header"><span class="camp-name">Distributor Leads — Cosmetics</span><span class="camp-status">● Live</span></div>
-      <div class="camp-metrics">
-        <div class="camp-metric"><div class="camp-metric-label">Leads</div><div class="camp-metric-val green">67</div></div>
-        <div class="camp-metric"><div class="camp-metric-label">CPL</div><div class="camp-metric-val green">₹20.35</div></div>
-        <div class="camp-metric"><div class="camp-metric-label">Reach</div><div class="camp-metric-val">10.2K</div></div>
-      </div>
-      <div><div class="progress-label"><span>Budget Efficiency</span><span>97%</span></div><div class="progress-bar"><div class="progress-fill" data-width="97"></div></div></div>
-    </div>
-    <div class="campaign-card reveal reveal-delay-2">
-      <div class="camp-header"><span class="camp-name">3rd Party Lead Gen</span><span class="camp-status">● Live</span></div>
-      <div class="camp-metrics">
-        <div class="camp-metric"><div class="camp-metric-label">Leads</div><div class="camp-metric-val green">61</div></div>
-        <div class="camp-metric"><div class="camp-metric-label">CPL</div><div class="camp-metric-val green">₹19.18</div></div>
-        <div class="camp-metric"><div class="camp-metric-label">Reach</div><div class="camp-metric-val">4.4K</div></div>
-      </div>
-      <div><div class="progress-label"><span>Budget Efficiency</span><span>92%</span></div><div class="progress-bar"><div class="progress-fill" data-width="92"></div></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- WORK -->
-<section class="work" id="work">
-  <div class="work-header">
-    <div class="reveal">
-      <span class="section-label">Case Studies</span>
-      <h2 class="section-title">Results Delivered<br>For Real Brands</h2>
-    </div>
-    <a href="https://wa.me/917217797821" class="btn-ghost reveal">Start Your Project →</a>
-  </div>
-  <div class="work-grid">
-    <a href="https://anayanaturals.com/" target="_blank" class="work-item reveal">
-      <div class="work-thumb">
-        <img class="work-thumb-img" src="assets/anaya.png" alt="Anaya Naturals" onerror="this.style.display='none'">
-        <div class="work-thumb-placeholder">AN</div>
-      </div>
-      <div class="work-content">
-        <span class="work-tag">Ecommerce Website</span>
-        <div class="work-title">Anaya Naturals</div>
-        <div class="work-meta">
-          <div class="work-result">Consistent orders within 3 weeks of launch</div>
-          <div class="work-detail">Built a Shopify store from scratch — product pages, checkout, trust elements. Client saw first sale within 48 hours of going live.</div>
-        </div>
-        <span class="work-link">View Live →</span>
-      </div>
-    </a>
-    <a href="https://dermacells.in/" target="_blank" class="work-item reveal reveal-delay-1">
-      <div class="work-thumb">
-        <img class="work-thumb-img" src="assets/derma.png" alt="Dermacells" onerror="this.style.display='none'">
-        <div class="work-thumb-placeholder">DC</div>
-      </div>
-      <div class="work-content">
-        <span class="work-tag">Brand Website + Lead Funnel</span>
-        <div class="work-title">Dermacells</div>
-        <div class="work-meta">
-          <div class="work-result">67 distributor leads at ₹20.35 CPL in 30 days</div>
-          <div class="work-detail">Meta Ads + landing page built together. Distributor enquiries scaled 5× versus previous agency's results at ₹120+ CPL.</div>
-        </div>
-        <span class="work-link">View Live →</span>
-      </div>
-    </a>
-    <a href="https://glamcos.store/" target="_blank" class="work-item reveal reveal-delay-2">
-      <div class="work-thumb">
-        <img class="work-thumb-img" src="assets/glamcos.png" alt="Glamcos" onerror="this.style.display='none'">
-        <div class="work-thumb-placeholder">GS</div>
-      </div>
-      <div class="work-content">
-        <span class="work-tag">Ecommerce + Automation</span>
-        <div class="work-title">Glamcos Store</div>
-        <div class="work-meta">
-          <div class="work-result">40% revenue increase in 60 days</div>
-          <div class="work-detail">Full ecommerce store + WhatsApp automation for lead follow-up. Every enquiry now gets an instant automated response, 24/7.</div>
-        </div>
-        <span class="work-link">View Live →</span>
-      </div>
-    </a>
-  </div>
-</section>
-
-<!-- BRANDS -->
-<section class="brands-section">
-  <div class="reveal">
-    <p class="brands-label">Brands I've Built Systems For</p>
-    <div class="brands-logos">
-      <span class="brand-logo">Anaya Naturals</span>
-      <span class="brand-logo">Dermacells</span>
-      <span class="brand-logo">Glamcos</span>
-      <span class="brand-logo">Botox Clinic</span>
-      <span class="brand-logo">Cosmetics Co.</span>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="testimonials" id="testimonials">
-  <div class="testimonials-header reveal">
-    <span class="section-label">Client Results</span>
-    <h2 class="section-title">What Clients Say</h2>
-    <p class="section-sub">Real feedback from real business owners — with real numbers attached.</p>
-  </div>
-  <div class="testi-grid">
-    <div class="testi-card reveal">
-      <div class="testi-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-      <div class="testi-result">First sale within 48 hrs of launch</div>
-      <p class="testi-text">Lakshay built our Shopify store from scratch and within 3 weeks we were getting consistent orders. The design was exactly what we wanted, delivered fast, and he was super responsive throughout via WhatsApp.</p>
-      <div class="testi-author"><div class="testi-avatar">PS</div><div><div class="testi-name">Priya Sharma</div><div class="testi-role">Founder, Anaya Naturals</div></div></div>
-    </div>
-    <div class="testi-card reveal reveal-delay-1">
-      <div class="testi-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-      <div class="testi-result">67 leads at ₹20 CPL — our previous agency charged ₹120+</div>
-      <p class="testi-text">The Meta Ads generated 67 distributor leads in the first month at under ₹21 per lead. We scaled our distributor network fast. Our previous agency was at ₹120+ CPL with worse leads.</p>
-      <div class="testi-author"><div class="testi-avatar">RG</div><div><div class="testi-name">Rahul Gupta</div><div class="testi-role">Director, Cosmetics Distribution Co.</div></div></div>
-    </div>
-    <div class="testi-card reveal reveal-delay-2">
-      <div class="testi-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
-      <div class="testi-result">Revenue up 40% in 60 days</div>
-      <p class="testi-text">He set up automations so our WhatsApp follows up with every lead automatically. It's like having a salesperson who never sleeps. Revenue went up 40% in 60 days — the system just works.</p>
-      <div class="testi-author"><div class="testi-avatar">NK</div><div><div class="testi-name">Neha Kapoor</div><div class="testi-role">CEO, Glamcos Store</div></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- PROCESS -->
-<section class="process" id="process">
-  <div class="process-header reveal">
-    <span class="section-label">How It Works</span>
-    <h2 class="section-title">No Calls. Fast Start.<br>Clear Results.</h2>
-    <p class="section-sub">Everything happens via WhatsApp and email. No calls, no delays — just execution.</p>
-  </div>
-  <div class="process-list">
-    <div class="process-line"></div>
-    <div class="process-item reveal">
-      <div class="process-dot">01</div>
-      <div class="process-content">
-        <h3>WhatsApp Me — Tell Me Your Goal</h3>
-        <p>No call needed. Message me on WhatsApp with your business type, goal, and budget. I reply within a few hours with clarity on what I'd do.</p>
-        <span class="process-badge">No call required</span>
-      </div>
-    </div>
-    <div class="process-item reveal reveal-delay-1">
-      <div class="process-dot">02</div>
-      <div class="process-content">
-        <h3>Custom Growth Plan — Free</h3>
-        <p>I send you a tailored plan: exact strategy, scope, timeline, and pricing. You'll know exactly what you're getting before you commit to anything.</p>
-        <span class="process-badge">Response in 24 hours</span>
-      </div>
-    </div>
-    <div class="process-item reveal reveal-delay-2">
-      <div class="process-dot">03</div>
-      <div class="process-content">
-        <h3>Build & Execute — Fast</h3>
-        <p>I build, share progress via WhatsApp, and deliver. Websites in 5–7 days. Ads live within 48 hours of approval. Updates shared regularly — no guessing.</p>
-        <span class="process-badge">5–7 day website delivery</span>
-      </div>
-    </div>
-    <div class="process-item reveal reveal-delay-3">
-      <div class="process-dot">04</div>
-      <div class="process-content">
-        <h3>Results — Track & Scale</h3>
-        <p>I send weekly performance reports. We track what's working, cut what isn't, and scale aggressively. Ongoing optimization included.</p>
-        <span class="process-badge">Weekly reporting</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- LEAD FORM -->
-<section class="lead-form-section" id="growth-plan">
-  <div class="lead-form-inner">
-    <div class="lead-form-left reveal">
-      <span class="section-label">Free Strategy Plan</span>
-      <h2 class="section-title">Get Your Free<br>Growth Plan<br>in 24 Hours</h2>
-      <p class="section-sub">Tell me about your business. I'll send you a custom strategy — what I'd do, how I'd do it, and what results to expect. No charge, no obligation.</p>
-      <div class="trust-badges">
-        <div class="trust-badge">
-          <div class="trust-icon">⚡</div>
-          <div class="trust-text"><strong>No Calls, Ever</strong> — Communication via WhatsApp &amp; Email only</div>
-        </div>
-        <div class="trust-badge">
-          <div class="trust-icon">🚀</div>
-          <div class="trust-text"><strong>5–7 Day Delivery</strong> — Full website, live and ready</div>
-        </div>
-        <div class="trust-badge">
-          <div class="trust-icon">📊</div>
-          <div class="trust-text"><strong>₹19–21 CPL Proven</strong> — In the cosmetics niche</div>
-        </div>
-        <div class="trust-badge">
-          <div class="trust-icon">🎯</div>
-          <div class="trust-text"><strong>Niche Expertise</strong> — Cosmetics, beauty, ecommerce only</div>
-        </div>
-      </div>
-    </div>
-    <div class="reveal reveal-delay-2">
-      <div class="lead-form">
-        <h3>Get Your Free Growth Plan</h3>
-        <p class="form-sub">I'll personally review and respond within 24 hours via WhatsApp.</p>
-        <div class="form-group">
-          <label>Your Name</label>
-          <input type="text" id="f-name" placeholder="e.g. Priya Sharma">
-        </div>
-        <div class="form-group">
-          <label>Business Type</label>
-          <select id="f-biz">
-            <option value="" disabled selected>Select your business type</option>
-            <option>Cosmetics / Beauty Brand</option>
-            <option>Ecommerce Store</option>
-            <option>Distributor / Wholesale</option>
-            <option>D2C Product Brand</option>
-            <option>Clinic / Service Business</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Monthly Budget</label>
-          <select id="f-budget">
-            <option value="" disabled selected>Select your budget range</option>
-            <option>Below ₹10,000/month</option>
-            <option>₹10,000 – ₹25,000/month</option>
-            <option>₹25,000 – ₹50,000/month</option>
-            <option>₹50,000 – ₹1,00,000/month</option>
-            <option>₹1,00,000+/month</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Your Main Goal</label>
-          <select id="f-goal">
-            <option value="" disabled selected>What do you need most?</option>
-            <option>More website traffic &amp; sales</option>
-            <option>Distributor / wholesale leads</option>
-            <option>Build a new ecommerce website</option>
-            <option>Run profitable Meta Ads</option>
-            <option>Automate lead follow-up</option>
-            <option>Full growth system (everything)</option>
-          </select>
-        </div>
-        <button class="form-submit" id="form-submit-btn">Send My Free Growth Plan →</button>
-        <p class="form-note">📲 I'll reach out via WhatsApp within 24 hours. No spam, ever.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="faq-section" id="faq">
-  <div class="faq-header reveal">
-    <span class="section-label">FAQ</span>
-    <h2 class="section-title">Common Questions</h2>
-    <p class="section-sub">Everything you need to know before working with me.</p>
-  </div>
-  <div class="faq-list">
-    <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Do you take calls?<span class="faq-icon">+</span></button><div class="faq-answer">No — I work strictly via WhatsApp and email. This keeps communication fast, documented, and efficient. Most clients find this even better than calls. I respond within a few hours.</div></div>
-    <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">How long does a website take?<span class="faq-icon">+</span></button><div class="faq-answer">Most ecommerce and business websites are delivered in 5–7 days. Complex builds with full product catalogues or custom features may take up to 10–12 days. I work fast without cutting corners on quality.</div></div>
-    <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">What's the minimum ad budget for Meta Ads?<span class="faq-icon">+</span></button><div class="faq-answer">I recommend at least ₹10,000–15,000/month in ad spend for meaningful results. At this range, my campaigns have consistently generated leads at ₹19–21 CPL in the cosmetics niche. The data is real.</div></div>
-    <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Do you only work with cosmetics brands?<span class="faq-icon">+</span></button><div class="faq-answer">My proven results and deepest expertise are in cosmetics, beauty, and ecommerce. I selectively take other business types if there's a strong fit — just message me and I'll tell you honestly.</div></div>
-    <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Can you handle website and ads together?<span class="faq-icon">+</span></button><div class="faq-answer">Yes — this is actually my recommended approach. When the landing page and ad strategy are built together with the same conversion goal, results are dramatically better. I build the full funnel end to end.</div></div>
-    <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">What does the free growth plan include?<span class="faq-icon">+</span></button><div class="faq-answer">You fill out the form, I review your business, and send you a custom strategy within 24 hours via WhatsApp — what I'd do, which system fits you, rough budget, and expected results. No charge, no obligation.</div></div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="cta-section">
-  <div class="cta-inner reveal">
-    <span class="section-label">Ready to Scale?</span>
-    <h2 class="section-title">Let's Build Your<br>Growth System</h2>
-    <p class="cta-sub">No calls. No delays. Just execution. I'll tell you exactly what I'd do to grow your business — for free.</p>
-    <p class="cta-meta">For <span>cosmetics brands</span>, <span>beauty businesses</span>, and <span>ecommerce founders</span> ready to scale.</p>
-    <div class="contact-options">
-      <a href="https://wa.me/917217797821" class="whatsapp-btn">📲 WhatsApp Me Now</a>
-      <a href="#growth-plan" class="btn-secondary">Get Free Strategy Plan →</a>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">LK<em>.</em></div>
-  <span class="footer-copy">© 2025 Lakshay Kumar. Growth Systems for Cosmetics &amp; Ecommerce Brands.</span>
+  <div class="logo">LK<span>.</span></div>
+  <span class="footer-copy">© 2025 Lakshay Kumar · Systems Builder · WhatsApp Only</span>
   <div class="footer-links">
     <a href="#">Instagram</a>
     <a href="#">LinkedIn</a>
@@ -851,55 +1477,225 @@ footer { padding:30px 6%; border-top:1px solid var(--border); display:flex; just
   </div>
 </footer>
 
+<!-- ═══════════════════════════════════════════
+   JAVASCRIPT
+═══════════════════════════════════════════ -->
 <script>
-/* ── CURSOR ── */
-const cursor=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
-(function aR(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(aR);})();
-document.querySelectorAll('a,button,.system-card,.work-item,.testi-card,.kpi-card,.campaign-card,.lead-form,.trust-badge').forEach(el=>{
-  el.addEventListener('mouseenter',()=>ring.classList.add('hov'));
-  el.addEventListener('mouseleave',()=>ring.classList.remove('hov'));
+/* ─ CURSOR ─ */
+const dot=document.getElementById('cur-dot'),ring=document.getElementById('cur-ring');
+if(dot&&ring){
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
+  (function aR(){rx+=(mx-rx)*.13;ry+=(my-ry)*.13;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(aR);})();
+  document.querySelectorAll('a,button,[data-tilt],.check-item,.p-card,.tl-card,.why-card,.case-card,.tcard,.fcard').forEach(el=>{
+    el.addEventListener('mouseenter',()=>ring.classList.add('big'));
+    el.addEventListener('mouseleave',()=>ring.classList.remove('big'));
+  });
+}
+
+/* ─ HEADER SCROLL ─ */
+const hdr=document.getElementById('header');
+window.addEventListener('scroll',()=>hdr.classList.toggle('stuck',window.scrollY>60));
+
+/* ─ MOBILE MENU ─ */
+const mobNav=document.getElementById('mob-nav'),ham=document.getElementById('ham');
+function toggleMob(){mobNav.classList.toggle('open');ham.classList.toggle('open');document.body.style.overflow=mobNav.classList.contains('open')?'hidden':'';}
+function closeMob(){mobNav.classList.remove('open');ham.classList.remove('open');document.body.style.overflow='';}
+
+/* ─ REVEAL ─ */
+const revObs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');}),{threshold:.09});
+document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+
+/* ─ COUNTERS ─ */
+const cntObs=new IntersectionObserver(es=>{es.forEach(e=>{if(!e.isIntersecting)return;const el=e.target,t=+el.dataset.target,dur=1600,s=performance.now();(function u(n){const p=Math.min((n-s)/dur,1),v=Math.round(p*t);el.textContent=v;if(p<1)requestAnimationFrame(u);})(performance.now());cntObs.unobserve(el);});},{threshold:.5});
+document.querySelectorAll('.counter').forEach(el=>cntObs.observe(el));
+
+/* ─ FLOAT CARD TILT ─ */
+document.querySelectorAll('.fcard[data-tilt]').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const cx=(e.clientX-r.left)/r.width-.5;
+    const cy=(e.clientY-r.top)/r.height-.5;
+    card.style.transform=`rotateY(${cx*18}deg) rotateX(${-cy*12}deg) translateZ(8px) scale(1.03)`;
+    card.style.transition='transform .1s';
+  });
+  card.addEventListener('mouseleave',()=>{
+    card.style.transform='';card.style.transition='transform .5s cubic-bezier(.4,0,.2,1)';
+  });
 });
 
-/* ── BACKGROUND PARTICLES ── */
-const bgc=document.getElementById('bg-canvas'),bgx=bgc.getContext('2d');
-let W,H,pts=[];
-function rsz(){W=bgc.width=window.innerWidth;H=bgc.height=window.innerHeight;}
-rsz();window.addEventListener('resize',rsz);
-class Pt{
-  constructor(){this.reset(true);}
-  reset(i){this.x=Math.random()*W;this.y=i?Math.random()*H:H+10;this.s=Math.random()*1.1+.2;this.sp=Math.random()*.25+.07;this.o=Math.random()*.3+.06;this.d=(Math.random()-.5)*.2;}
-  update(){this.y-=this.sp;this.x+=this.d;if(this.y<-10)this.reset(false);}
-  draw(){bgx.beginPath();bgx.arc(this.x,this.y,this.s,0,Math.PI*2);bgx.fillStyle=`rgba(99,102,241,${this.o})`;bgx.fill();}
+/* ─ SYSTEM BUILDER ─ */
+const services={
+  website:{name:'🌐 Website',price:7000,timeline:'5–7 days',flow:['Briefing','Design','Dev','Launch']},
+  ads:{name:'📣 Lead Gen',price:3000,timeline:'3–4 days',flow:['Campaign Setup','Creatives','Launch','Optimize']},
+  automation:{name:'🤖 Automation',price:3000,timeline:'3–5 days',flow:['Integrate','Flows','Test','Deploy']},
+  app:{name:'📱 App Dev',price:10000,timeline:'15–20 days',flow:['Planning','UI Design','Dev','Testing','Launch']}
+};
+const selected=new Set();
+
+function toggleCheck(label,key){
+  label.classList.toggle('active');
+  if(selected.has(key))selected.delete(key);else selected.add(key);
+  updateBuilder();
 }
-for(let i=0;i<55;i++)pts.push(new Pt());
-(function dBG(){bgx.clearRect(0,0,W,H);pts.forEach(p=>{p.update();p.draw();});requestAnimationFrame(dBG);})();
 
-/* ── HEADER SCROLL ── */
-window.addEventListener('scroll',()=>document.getElementById('header').classList.toggle('scrolled',window.scrollY>50));
+function updateBuilder(){
+  const empty=document.getElementById('bo-empty');
+  const content=document.getElementById('bo-content');
+  if(selected.size===0){empty.style.display='block';content.style.display='none';return;}
+  empty.style.display='none';content.style.display='block';
 
-/* ── REVEAL ON SCROLL ── */
-const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:.1});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+  let total=0,maxDays=0;
+  const items=[];
+  const flowAll=[];
+  const timelineMap={website:[5,7],ads:[3,4],automation:[3,5],app:[15,20]};
 
-/* ── COUNTERS ── */
-const cob=new IntersectionObserver(es=>{es.forEach(e=>{if(!e.isIntersecting)return;const el=e.target,t=parseInt(el.dataset.target),d=1800,s=performance.now();(function u(n){const p=Math.min((n-s)/d,1);el.textContent=Math.round(p*t);if(p<1)requestAnimationFrame(u);})(performance.now());cob.unobserve(el);});},{threshold:.5});
-document.querySelectorAll('.counter').forEach(el=>cob.observe(el));
+  selected.forEach(k=>{
+    const s=services[k];
+    total+=s.price;
+    const tl=timelineMap[k];
+    if(tl[1]>maxDays)maxDays=tl[1];
+    items.push(s);
+    s.flow.forEach(f=>flowAll.push({step:f,key:k}));
+  });
 
-/* ── PROGRESS BARS ── */
-const pob=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.querySelectorAll('.progress-fill').forEach(f=>setTimeout(()=>f.style.width=f.dataset.width+'%',250));});},{threshold:.3});
-document.querySelectorAll('.campaign-card').forEach(c=>pob.observe(c));
+  // Price animate
+  const priceEl=document.getElementById('bo-price-val');
+  const cur=parseInt(priceEl.textContent.replace(/[^0-9]/g,''))||0;
+  animateNum(priceEl,cur,total,500);
 
-/* ── CHARTS ── */
-Chart.defaults.color='rgba(255,255,255,0.38)';
+  // Timeline
+  const tlEl=document.getElementById('bo-timeline');
+  tlEl.textContent=maxDays<=7?'5–7 days':maxDays<=10?'Up to 10 days':'15–20 days';
+
+  // Items
+  const itemsCont=document.getElementById('bo-items');
+  itemsCont.innerHTML='';
+  items.forEach(s=>{
+    const d=document.createElement('div');
+    d.className='bo-item';
+    d.innerHTML=`<span class="bo-item-icon">${s.name.split(' ')[0]}</span><span class="bo-item-name">${s.name.split(' ').slice(1).join(' ')}</span><span class="bo-item-price">₹${s.price.toLocaleString()}</span>`;
+    itemsCont.appendChild(d);
+  });
+
+  // Flow
+  const flowCont=document.getElementById('bo-flow-steps');
+  flowCont.innerHTML='';
+  const allSteps=['Traffic','Website','Lead Capture','WhatsApp','Conversion'];
+  const activeSteps=new Set();
+  if(selected.has('ads'))activeSteps.add('Traffic');
+  if(selected.has('website'))activeSteps.add('Website');
+  if(selected.has('website')||selected.has('ads'))activeSteps.add('Lead Capture');
+  if(selected.has('automation'))activeSteps.add('WhatsApp');
+  activeSteps.add('Conversion');
+  allSteps.forEach((step,i)=>{
+    const d=document.createElement('div');d.className='bo-step';
+    const p=document.createElement('span');
+    p.className='bo-step-pill'+(activeSteps.has(step)?' active':'');
+    p.textContent=step;d.appendChild(p);
+    if(i<allSteps.length-1){const a=document.createElement('span');a.className='bo-step-arrow';a.textContent='→';d.appendChild(a);}
+    flowCont.appendChild(d);
+  });
+
+  // WA message
+  const waBtn=document.getElementById('bo-wa-btn');
+  const selectedNames=[...selected].map(k=>services[k].name).join(', ');
+  waBtn.href=`https://wa.me/917217797821?text=${encodeURIComponent(`Hi Lakshay! I used the System Builder and selected: ${selectedNames}. Total: ₹${total.toLocaleString()}. I'd like to discuss further!`)}`;
+}
+
+function animateNum(el,from,to,dur){
+  const s=performance.now();
+  (function u(n){const p=Math.min((n-s)/dur,1),v=Math.round(from+(to-from)*p);el.textContent=v.toLocaleString();if(p<1)requestAnimationFrame(u);})(performance.now());
+}
+
+/* ─ PIPELINE ANIMATION ─ */
+const pipeObs=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(!e.isIntersecting)return;
+    const fills=document.querySelectorAll('.pipe-connector-fill');
+    const dots=document.querySelectorAll('.pipe-dot');
+    const nodes=document.querySelectorAll('.pipe-circle');
+    fills.forEach((f,i)=>setTimeout(()=>{f.style.width='100%';},i*300));
+    nodes.forEach((n,i)=>setTimeout(()=>{n.classList.add('active');},i*300));
+    setTimeout(()=>dots.forEach(d=>d.classList.add('running')),fills.length*300+200);
+    pipeObs.unobserve(e.target);
+  });
+},{threshold:.4});
+const pt=document.getElementById('pipeline-track');
+if(pt)pipeObs.observe(pt);
+
+/* ─ APP DEMO ANIMATION ─ */
+const appObs=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(!e.isIntersecting)return;
+    animateNum(document.getElementById('app-leads'),0,24,1200);
+    setTimeout(()=>{
+      const pb=document.getElementById('app-pbar');
+      const pb2=document.getElementById('app-pbar2');
+      const bpct=document.getElementById('app-budget-pct');
+      const lpct=document.getElementById('app-leads-pct');
+      if(pb){pb.style.transition='width 1.5s ease';pb.style.width='78%';bpct.textContent='78%';}
+      if(pb2){pb2.style.transition='width 1.5s ease 0.3s';pb2.style.width='94%';lpct.textContent='94%';}
+    },400);
+    appObs.unobserve(e.target);
+  });
+},{threshold:.3});
+const ph=document.getElementById('demo-phone');
+if(ph)appObs.observe(ph);
+
+/* ─ PHONE TILT ─ */
+if(ph){
+  ph.addEventListener('mousemove',e=>{
+    const r=ph.getBoundingClientRect();
+    const cx=(e.clientX-r.left)/r.width-.5;
+    const cy=(e.clientY-r.top)/r.height-.5;
+    ph.style.transform=`rotateY(${cx*20}deg) rotateX(${-cy*10}deg)`;
+    ph.style.transition='transform .1s';
+  });
+  ph.addEventListener('mouseleave',()=>{ph.style.transform='';ph.style.transition='transform .5s';});
+}
+
+/* ─ BEFORE/AFTER SLIDER ─ */
+(function(){
+  const cont=document.getElementById('slider-cont');
+  const handle=document.getElementById('slider-handle');
+  const before=document.getElementById('sp-before');
+  const after=document.getElementById('sp-after');
+  if(!cont||!handle)return;
+  let dragging=false,pct=50;
+  function setSlider(p){pct=Math.max(5,Math.min(95,p));handle.style.left=pct+'%';before.style.width=pct+'%';after.style.left=pct+'%';}
+  handle.addEventListener('mousedown',e=>{dragging=true;e.preventDefault();});
+  handle.addEventListener('touchstart',e=>{dragging=true;},{passive:true});
+  document.addEventListener('mousemove',e=>{if(!dragging)return;const r=cont.getBoundingClientRect();setSlider((e.clientX-r.left)/r.width*100);});
+  document.addEventListener('touchmove',e=>{if(!dragging)return;const r=cont.getBoundingClientRect();setSlider((e.touches[0].clientX-r.left)/r.width*100);},{passive:true});
+  document.addEventListener('mouseup',()=>dragging=false);
+  document.addEventListener('touchend',()=>dragging=false);
+  setSlider(50);
+})();
+
+/* ─ PRICING TABS ─ */
+function switchTab(name,btn){
+  document.querySelectorAll('.ptab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.pricing-panels .panel').forEach(p=>p.classList.remove('active'));
+  const panel=document.getElementById('panel-'+name);
+  if(panel)panel.classList.add('active');
+}
+
+/* ─ CHARTS ─ */
+Chart.defaults.color='rgba(255,255,255,0.35)';
 Chart.defaults.borderColor='rgba(255,255,255,0.05)';
 
 new Chart(document.getElementById('cplChart'),{
   type:'bar',
   data:{
-    labels:['Industry Avg','Boosted Posts','Other Agency','Lakshay'],
-    datasets:[{data:[65,90,40,20],backgroundColor:['rgba(255,90,90,.2)','rgba(255,150,50,.2)','rgba(255,220,50,.2)','rgba(16,217,138,.25)'],borderColor:['rgba(255,90,90,.7)','rgba(255,150,50,.7)','rgba(255,220,50,.7)','rgba(16,217,138,.9)'],borderWidth:2,borderRadius:8}]
+    labels:['Industry Avg','Boosted Posts','Other Agency','Lakshay Kumar'],
+    datasets:[{
+      data:[65,90,38,20],
+      backgroundColor:['rgba(239,68,68,.18)','rgba(245,158,11,.18)','rgba(168,85,247,.18)','rgba(16,185,129,.25)'],
+      borderColor:['rgba(239,68,68,.7)','rgba(245,158,11,.7)','rgba(168,85,247,.7)','rgba(16,185,129,.9)'],
+      borderWidth:2,borderRadius:8,borderSkipped:false
+    }]
   },
   options:{responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>'₹'+c.raw+' per lead'}}},scales:{y:{beginAtZero:true,ticks:{callback:v=>'₹'+v},grid:{color:'rgba(255,255,255,0.04)'}},x:{grid:{display:false}}}}
 });
@@ -908,43 +1704,25 @@ new Chart(document.getElementById('leadsChart'),{
   type:'line',
   data:{
     labels:['Wk 1','Wk 2','Wk 3','Wk 4','Wk 5','Wk 6'],
-    datasets:[{label:'Leads',data:[8,17,28,44,64,88],borderColor:'rgba(79,70,229,1)',backgroundColor:'rgba(79,70,229,0.1)',fill:true,tension:.42,pointRadius:5,pointBackgroundColor:'#4F46E5',pointBorderColor:'#fff',pointBorderWidth:2}]
+    datasets:[{
+      label:'Leads',data:[8,17,28,44,64,88],
+      borderColor:'rgba(37,99,235,1)',backgroundColor:'rgba(37,99,235,0.08)',
+      fill:true,tension:.42,pointRadius:5,
+      pointBackgroundColor:'#2563EB',pointBorderColor:'#fff',pointBorderWidth:2
+    }]
   },
   options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,grid:{color:'rgba(255,255,255,0.04)'}},x:{grid:{display:false}}}}
 });
 
-/* ── FAQ ── */
-function toggleFaq(btn){
-  const item=btn.closest('.faq-item'),open=item.classList.contains('open');
-  document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
-  if(!open)item.classList.add('open');
-}
-
-/* ── MOBILE MENU ── */
-function toggleMenu(){
-  const nav=document.getElementById('mobile-nav'),ham=document.getElementById('hamburger');
-  nav.classList.toggle('active');ham.classList.toggle('active');
-  document.body.style.overflow=nav.classList.contains('active')?'hidden':'';
-}
-
-/* ── FORM SUBMIT (WhatsApp redirect) ── */
-document.getElementById('form-submit-btn').addEventListener('click',()=>{
+/* ─ FORM SUBMIT ─ */
+document.getElementById('form-btn').addEventListener('click',()=>{
   const name=document.getElementById('f-name').value.trim();
   const biz=document.getElementById('f-biz').value;
   const budget=document.getElementById('f-budget').value;
   const goal=document.getElementById('f-goal').value;
-  if(!name||!biz||!budget||!goal){
-    alert('Please fill in all fields before submitting.');return;
-  }
-  const msg=`Hi Lakshay! I'd like a free growth plan.\n\nName: ${name}\nBusiness: ${biz}\nBudget: ${budget}\nGoal: ${goal}`;
+  if(!name||!biz||!budget||!goal){alert('Please fill in all fields.');return;}
+  const msg=`Hi Lakshay! I'd like a free growth plan.\n\n👤 Name: ${name}\n🏢 Business: ${biz}\n💰 Budget: ${budget}\n🎯 Goal: ${goal}\n\nPlease send me your recommendations!`;
   window.open('https://wa.me/917217797821?text='+encodeURIComponent(msg),'_blank');
-});
-
-/* ── SMOOTH SYSTEM CARD LINKS ── */
-document.querySelectorAll('.sys-arrow').forEach(el=>{
-  el.closest('.system-card').addEventListener('click',()=>{
-    document.getElementById('growth-plan').scrollIntoView({behavior:'smooth'});
-  });
 });
 </script>
 </body>

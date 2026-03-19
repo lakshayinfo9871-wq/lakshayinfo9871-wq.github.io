@@ -1058,6 +1058,8 @@ body::before {
   padding: 26px;
   transition: all .3s var(--ease);
   box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
 }
 .kpi-mini:hover { border-color: var(--border-i); transform: translateY(-3px); box-shadow: var(--shadow-md); }
 .kpi-mini-val { font-family: var(--font-head); font-size: 34px; font-weight: 800; color: var(--text-l); letter-spacing: -1.5px; line-height: 1; margin-bottom: 9px; }
@@ -1587,50 +1589,355 @@ footer {
 .footer-links a:hover { color: var(--text-l); }
 
 /* ══════════════════════════════════════════
-   RESPONSIVE
+   MOBILE PIPELINE — vertical auto-animated
 ══════════════════════════════════════════ */
-@media(max-width:1024px){
-  .demo-inner,.form-inner,.ba-inner { grid-template-columns:1fr; gap:48px; }
-  .phone-wrap { order:-1; }
-  .form-inner { max-width:560px; }
-  .pricing-cards { grid-template-columns:1fr; }
+.mobile-pipeline { display: none; }
+.desktop-pipeline { display: block; }
+
+.mp-step {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity .5s var(--ease), transform .5s var(--ease);
 }
-@media(max-width:900px){
-  .hero-inner { grid-template-columns:1fr; gap:48px; text-align:center; }
-  .hero-right { display:none; }
-  .hero-ctas { justify-content:center; }
-  .hero-meta { justify-content:center; }
-  .hero-sub,.hero-recover { margin-left:auto; margin-right:auto; }
-  .trust-inner { grid-template-columns:repeat(2,1fr); }
-  .builder-inner { grid-template-columns:1fr; gap:40px; }
-  .builder-right { position:static; }
-  .results-grid { grid-template-columns:1fr; }
-  .results-grid-3 { grid-template-columns:1fr 1fr; }
-  .timeline-cards { grid-template-columns:repeat(2,1fr); }
-  .why-grid { grid-template-columns:1fr; }
-  .cases-grid,.testi-grid { grid-template-columns:1fr; }
+.mp-step.mp-visible { opacity: 1; transform: none; }
+.mp-step.mp-active .mp-icon-wrap { border-color: var(--indigo); background: rgba(99,102,241,.14); box-shadow: 0 0 0 4px rgba(99,102,241,.1); }
+.mp-step.mp-active .mp-line { background: linear-gradient(to bottom, var(--indigo), var(--border)); }
+.mp-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  padding-top: 4px;
 }
-@media(max-width:640px){
-  .trust-inner { grid-template-columns:1fr 1fr; }
-  .trust-num { font-size:38px; }
-  .results-grid-3 { grid-template-columns:1fr; }
-  .timeline-cards { grid-template-columns:1fr 1fr; }
-  .nav { display:none; } .ham { display:flex; }
-  footer { flex-direction:column; text-align:center; }
-  .footer-links { justify-content:center; }
-  .hero-ctas { flex-direction:column; align-items:center; }
-  .hero-ctas .btn { width:100%; max-width:320px; justify-content:center; }
-  .cta-btns { flex-direction:column; align-items:center; }
-  .cta-btns .btn { width:100%; max-width:320px; justify-content:center; }
-  .ba-inner { grid-template-columns:1fr; }
-  .hero h1 { letter-spacing:-2px; }
-  .pricing-tabs { max-width:100%; padding:4px; }
-  .ptab { font-size:12px; padding:8px 10px; }
-  .timeline-cards { grid-template-columns:1fr; }
+.mp-icon-wrap {
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  border: 1px solid var(--border-m);
+  background: var(--bg2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+  transition: all .4s var(--ease);
+  position: relative;
+  z-index: 2;
 }
-@media(max-width:480px){
-  .the-form { padding:28px 20px; }
-  .metric-grid { grid-template-columns:1fr 1fr; }
+.mp-icon-final { border-color: rgba(16,185,129,.4) !important; background: rgba(16,185,129,.1) !important; }
+.mp-line {
+  width: 2px;
+  flex: 1;
+  background: var(--border);
+  margin: 6px 0;
+  min-height: 40px;
+  border-radius: 2px;
+  transition: background .5s var(--ease);
+}
+.mp-content { padding-bottom: 28px; flex: 1; }
+.mp-num {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 2px;
+  margin-bottom: 6px;
+}
+.mp-title {
+  font-family: var(--font-head);
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--text-l);
+  margin-bottom: 7px;
+  letter-spacing: -.3px;
+}
+.mp-desc { font-size: 13.5px; color: var(--muted2); line-height: 1.7; margin-bottom: 10px; }
+.mp-tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--indigo-l);
+  background: rgba(99,102,241,.1);
+  border: 1px solid rgba(99,102,241,.22);
+  border-radius: 4px;
+  padding: 4px 10px;
+}
+
+/* ══════════════════════════════════════════
+   MOBILE ANIMATIONS
+══════════════════════════════════════════ */
+/* Shimmer card highlight */
+@keyframes mob-shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.mob-shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,.04) 50%, transparent 60%);
+  background-size: 200% 100%;
+  animation: mob-shimmer 2.5s infinite;
+  pointer-events: none;
+}
+
+/* Slide-in from left/right for alternating cards */
+.slide-left  { opacity: 0; transform: translateX(-28px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
+.slide-right { opacity: 0; transform: translateX( 28px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
+.slide-left.vis, .slide-right.vis { opacity: 1; transform: none; }
+
+/* Float-up with scale */
+.pop-up { opacity: 0; transform: translateY(20px) scale(.97); transition: opacity .55s var(--ease), transform .55s var(--ease); }
+.pop-up.vis { opacity: 1; transform: none; }
+
+/* Ticker shimmer on numbers */
+@keyframes num-glow {
+  0%,100% { text-shadow: 0 0 8px transparent; }
+  50% { text-shadow: 0 0 16px rgba(6,182,212,.5); }
+}
+.num-glow-anim { animation: num-glow 2.5s ease-in-out infinite; }
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — TABLET 1024px
+══════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .demo-inner, .form-inner { grid-template-columns: 1fr; gap: 48px; }
+  .phone-wrap { order: -1; }
+  .form-inner { max-width: 560px; }
+  .pricing-cards { grid-template-columns: 1fr; }
+  .ba-inner { grid-template-columns: 1fr; gap: 40px; }
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — TABLET 900px
+══════════════════════════════════════════ */
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 0; text-align: center; }
+  .hero-right { display: none; }
+  .hero-ctas { justify-content: center; }
+  .hero-meta { justify-content: center; }
+  .hero-sub, .hero-recover { margin-left: auto; margin-right: auto; }
+  .trust-inner { grid-template-columns: repeat(2, 1fr); }
+  .builder-inner { grid-template-columns: 1fr; gap: 40px; }
+  .builder-right { position: static; }
+  .results-grid { grid-template-columns: 1fr; }
+  .results-grid-3 { grid-template-columns: 1fr 1fr; }
+  .timeline-cards { grid-template-columns: repeat(2, 1fr); }
+  .why-grid { grid-template-columns: 1fr; }
+  .cases-grid, .testi-grid { grid-template-columns: 1fr; }
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — MOBILE 640px
+   Full mobile redesign
+══════════════════════════════════════════ */
+@media (max-width: 640px) {
+  /* Base */
+  html { overflow-x: hidden; }
+  body { overflow-x: hidden; }
+  .container { padding: 0 4%; }
+
+  /* Nav */
+  .nav { display: none; }
+  .ham { display: flex; }
+  #header { padding: 16px 4%; }
+  #header.stuck { padding: 12px 4%; }
+
+  /* Hero */
+  .hero {
+    padding: 100px 4% 60px;
+    min-height: auto;
+  }
+  .hero h1 {
+    font-size: clamp(36px, 10vw, 52px);
+    letter-spacing: -1.5px;
+    line-height: 1.02;
+    margin-bottom: 18px;
+  }
+  .hero-availability {
+    font-size: 11px;
+    padding: 6px 12px;
+    margin-bottom: 20px;
+  }
+  .hero-sub {
+    font-size: 15px;
+    margin-bottom: 10px;
+    max-width: 100%;
+  }
+  .hero-recover {
+    font-size: 13px;
+    max-width: 100%;
+    margin-bottom: 8px;
+  }
+  .hero-note { font-size: 12.5px; margin-bottom: 24px; }
+  .hero-ctas {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .hero-ctas .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 15px 20px;
+    font-size: 14.5px;
+  }
+  .hero-meta {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    padding-left: 4px;
+    margin-top: 28px;
+  }
+  .hero-meta-item { font-size: 12.5px; }
+
+  /* Trust strip */
+  .trust-inner { grid-template-columns: 1fr 1fr; }
+  .trust-item {
+    padding: 28px 16px;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .trust-item:nth-child(2n) { border-right: none; }
+  .trust-item:nth-child(n+3) { border-bottom: none; }
+  .trust-num { font-size: 36px; letter-spacing: -2px; }
+  .trust-label { font-size: 12px; }
+
+  /* Section heads */
+  .section-head { margin-bottom: 40px; }
+  .section-head h2 { letter-spacing: -1px; }
+  .section-head p { font-size: 14px; }
+  .tag-pill { font-size: 10.5px; }
+
+  /* Builder */
+  .builder-section { padding: 72px 0; }
+  .check-item { padding: 14px 16px; }
+  .check-name { font-size: 14px; }
+  .check-detail { font-size: 12px; }
+  .check-price { font-size: 12.5px; }
+  .bo-price { font-size: 34px; }
+  .builder-output { border-radius: var(--r2); }
+  .bo-body { padding: 20px; }
+
+  /* Pipeline */
+  .desktop-pipeline { display: none; }
+  .mobile-pipeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    max-width: 100%;
+  }
+
+  /* App demo */
+  .demo-section { padding: 72px 0; }
+  .demo-text h2 { font-size: clamp(24px, 8vw, 36px); }
+  .demo-text p { font-size: 14px; }
+  .phone-wrap { justify-content: center; }
+  .phone { width: 220px; height: 450px; }
+  .phone:hover { transform: none; }
+
+  /* Results */
+  .results-section { padding: 72px 0; }
+  .results-grid-3 { grid-template-columns: 1fr; gap: 12px; }
+  .kpi-mini { padding: 22px 18px; }
+  .kpi-mini-val { font-size: 30px; }
+  .ba-table { font-size: 12px; }
+  .ba-table th { padding: 9px 10px; font-size: 9px; }
+  .ba-table td { padding: 11px 10px; }
+  .chart-card { padding: 20px 16px; }
+
+  /* Pricing */
+  .pricing-section { padding: 72px 0; }
+  .pricing-tabs {
+    max-width: 100%;
+    padding: 4px;
+    gap: 4px;
+  }
+  .ptab {
+    font-size: 11.5px;
+    padding: 8px 8px;
+    flex: 1;
+    text-align: center;
+  }
+  .pricing-cards { grid-template-columns: 1fr; gap: 14px; }
+  .p-card { padding: 24px 20px; }
+  .p-price-val { font-size: 34px; }
+  .pricing-early { font-size: 12.5px; padding: 10px 16px; margin-bottom: 28px; }
+  .pricing-recommend { font-size: 12.5px; }
+
+  /* Timeline */
+  .timeline-section { padding: 72px 0; }
+  .timeline-cards { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .tl-card { padding: 22px 16px; }
+  .tl-days { font-size: 22px; }
+  .tl-service { font-size: 14px; }
+
+  /* Why section */
+  .why-section { padding: 72px 0; }
+  .why-grid { grid-template-columns: 1fr; gap: 12px; }
+  .why-card { padding: 24px 20px; }
+  .why-title { font-size: 16px; }
+
+  /* Who section */
+  .who-section { padding: 64px 0; }
+  .who-tags { gap: 8px; }
+  .who-tag { font-size: 13px; padding: 10px 16px; }
+
+  /* Cases */
+  .cases-section { padding: 72px 0; }
+  .cases-grid { grid-template-columns: 1fr; gap: 14px; }
+  .case-body { padding: 20px; }
+
+  /* Testimonials */
+  .testi-section { padding: 72px 0; }
+  .testi-grid { grid-template-columns: 1fr; gap: 14px; }
+  .tcard { padding: 24px 20px; }
+
+  /* Form */
+  .form-section { padding: 72px 0; }
+  .form-inner { grid-template-columns: 1fr; gap: 40px; max-width: 100%; }
+  .the-form { padding: 26px 20px; border-radius: var(--r2); }
+  .the-form h3 { font-size: 18px; }
+  .form-left h2 { font-size: clamp(26px, 8vw, 38px); letter-spacing: -1.5px; }
+  .trust-list { gap: 12px; }
+  .trust-item-row { font-size: 13.5px; }
+  .fg input, .fg select { padding: 12px 14px; font-size: 14px; }
+  .btn-full.btn-lg { padding: 14px 20px; font-size: 14.5px; }
+
+  /* CTA */
+  .cta-final { padding: 90px 0; }
+  .cta-final h2 { font-size: clamp(32px, 9vw, 48px); letter-spacing: -2px; }
+  .cta-final p { font-size: 15px; }
+  .cta-btns {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 0 4%;
+  }
+  .cta-btns .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 15px 20px;
+  }
+
+  /* Footer */
+  footer { flex-direction: column; text-align: center; padding: 24px 4%; gap: 12px; }
+  .footer-links { justify-content: center; }
+  .footer-copy { font-size: 12px; }
+}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — SMALL MOBILE 400px
+══════════════════════════════════════════ */
+@media (max-width: 400px) {
+  .hero h1 { font-size: 34px; }
+  .trust-item { padding: 22px 12px; }
+  .trust-num { font-size: 30px; }
+  .timeline-cards { grid-template-columns: 1fr; }
+  .ptab { font-size: 10.5px; padding: 7px 6px; }
+  .who-tag { font-size: 12px; padding: 8px 12px; }
 }
 </style>
 </head>
@@ -1863,7 +2170,9 @@ footer {
       <h2>How the Full System Works</h2>
       <p>Every component connects to form a single, measurable growth engine — from first impression to closed client.</p>
     </div>
-    <div class="pipeline-outer">
+
+    <!-- Desktop: horizontal -->
+    <div class="pipeline-outer desktop-pipeline">
       <div class="pipeline-track" id="pipeline-track">
         <div class="pipe-node"><div class="pipe-circle" id="pn0">📊</div><div class="pipe-label">Traffic</div><div class="pipe-sub">Meta Ads</div></div>
         <div class="pipe-connector" id="pc0"><div class="pipe-connector-fill" id="pf0"></div><div class="pipe-dot" id="pd0"></div></div>
@@ -1876,6 +2185,81 @@ footer {
         <div class="pipe-node"><div class="pipe-circle" id="pn4">💬</div><div class="pipe-label">WhatsApp</div><div class="pipe-sub">Lead Nurture</div></div>
         <div class="pipe-connector" id="pc4"><div class="pipe-connector-fill" id="pf4"></div><div class="pipe-dot" id="pd4"></div></div>
         <div class="pipe-node"><div class="pipe-circle" id="pn5">✅</div><div class="pipe-label">Conversion</div><div class="pipe-sub">Closed Client</div></div>
+      </div>
+    </div>
+
+    <!-- Mobile: vertical auto-animated steps -->
+    <div class="mobile-pipeline" id="mobile-pipeline">
+      <div class="mp-step" data-index="0">
+        <div class="mp-left">
+          <div class="mp-icon-wrap"><div class="mp-icon">📊</div></div>
+          <div class="mp-line"></div>
+        </div>
+        <div class="mp-content">
+          <div class="mp-num">01</div>
+          <div class="mp-title">Traffic</div>
+          <div class="mp-desc">Meta Ads drive targeted traffic from your ideal audience directly to your landing page.</div>
+          <div class="mp-tag">Meta Ads</div>
+        </div>
+      </div>
+      <div class="mp-step" data-index="1">
+        <div class="mp-left">
+          <div class="mp-icon-wrap"><div class="mp-icon">🌐</div></div>
+          <div class="mp-line"></div>
+        </div>
+        <div class="mp-content">
+          <div class="mp-num">02</div>
+          <div class="mp-title">Website</div>
+          <div class="mp-desc">A high-converting landing page built to turn visitors into leads with optimised copy and design.</div>
+          <div class="mp-tag">Landing Page</div>
+        </div>
+      </div>
+      <div class="mp-step" data-index="2">
+        <div class="mp-left">
+          <div class="mp-icon-wrap"><div class="mp-icon">📋</div></div>
+          <div class="mp-line"></div>
+        </div>
+        <div class="mp-content">
+          <div class="mp-num">03</div>
+          <div class="mp-title">Lead Capture</div>
+          <div class="mp-desc">Smart lead forms collect qualified contact data and instantly route leads to your system.</div>
+          <div class="mp-tag">Data Capture</div>
+        </div>
+      </div>
+      <div class="mp-step" data-index="3">
+        <div class="mp-left">
+          <div class="mp-icon-wrap"><div class="mp-icon">🤖</div></div>
+          <div class="mp-line"></div>
+        </div>
+        <div class="mp-content">
+          <div class="mp-num">04</div>
+          <div class="mp-title">Automation</div>
+          <div class="mp-desc">AI-powered system responds to every lead within seconds — no manual effort required.</div>
+          <div class="mp-tag">Instant Reply</div>
+        </div>
+      </div>
+      <div class="mp-step" data-index="4">
+        <div class="mp-left">
+          <div class="mp-icon-wrap"><div class="mp-icon">💬</div></div>
+          <div class="mp-line"></div>
+        </div>
+        <div class="mp-content">
+          <div class="mp-num">05</div>
+          <div class="mp-title">WhatsApp Nurture</div>
+          <div class="mp-desc">Automated multi-step sequences build trust and keep your business top-of-mind.</div>
+          <div class="mp-tag">Lead Nurture</div>
+        </div>
+      </div>
+      <div class="mp-step" data-index="5">
+        <div class="mp-left">
+          <div class="mp-icon-wrap mp-icon-final"><div class="mp-icon">✅</div></div>
+        </div>
+        <div class="mp-content">
+          <div class="mp-num">06</div>
+          <div class="mp-title">Conversion</div>
+          <div class="mp-desc">Leads convert into paying clients. The entire pipeline runs automatically — you focus on delivering.</div>
+          <div class="mp-tag" style="background:rgba(16,185,129,.12);color:var(--green);border-color:rgba(16,185,129,.3);">Closed Client</div>
+        </div>
       </div>
     </div>
   </div>
@@ -2004,57 +2388,7 @@ footer {
   </div>
 </section>
 
-<!-- ═══ BEFORE / AFTER ═══ -->
-<section class="ba-section">
-  <div class="container">
-    <div class="ba-inner">
-      <div class="ba-demo reveal">
-        <div class="ba-demo-header">
-          <div class="ba-dots"><div class="ba-dot bd1"></div><div class="ba-dot bd2"></div><div class="ba-dot bd3"></div></div>
-          <span class="ba-demo-title">Drag to compare results</span>
-        </div>
-        <div class="slider-container" id="slider-cont">
-          <div class="slider-panel slider-panel-before" id="sp-before">
-            <div style="padding:28px;height:100%;display:flex;flex-direction:column;justify-content:center;">
-              <div style="font-size:10px;color:#f87171;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;">BEFORE</div>
-              <div style="font-family:var(--font-head);font-size:22px;font-weight:800;color:#f87171;letter-spacing:-1px;margin-bottom:8px;">₹120 CPL</div>
-              <div style="font-size:12.5px;color:var(--muted2);line-height:1.8;">• 5–10 leads per month<br>• No follow-up system<br>• Manual processes<br>• Low-intent leads</div>
-            </div>
-          </div>
-          <div class="slider-panel slider-panel-after" id="sp-after">
-            <div style="padding:28px;height:100%;display:flex;flex-direction:column;justify-content:center;padding-left:calc(50% + 28px);">
-              <div style="font-size:10px;color:var(--green);font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;">AFTER</div>
-              <div style="font-family:var(--font-head);font-size:22px;font-weight:800;color:var(--green);letter-spacing:-1px;margin-bottom:8px;">₹19 CPL</div>
-              <div style="font-size:12.5px;color:var(--muted2);line-height:1.8;">• 60–80 leads per month<br>• Instant WhatsApp follow-up<br>• Fully automated pipeline<br>• High-intent qualified leads</div>
-            </div>
-          </div>
-          <div class="slider-handle" id="slider-handle">
-            <div class="slider-knob">⇌</div>
-          </div>
-          <div class="slider-label sl-before-label">BEFORE</div>
-          <div class="slider-label sl-after-label">AFTER</div>
-        </div>
-        <div class="metric-grid">
-          <div class="metric-card"><div class="mc-label">Cost Per Lead</div><div class="mc-row"><span class="mc-before">₹120</span><span class="mc-arrow">→</span><span class="mc-after">₹19</span></div></div>
-          <div class="metric-card"><div class="mc-label">Monthly Leads</div><div class="mc-row"><span class="mc-before">10</span><span class="mc-arrow">→</span><span class="mc-after">70+</span></div></div>
-          <div class="metric-card"><div class="mc-label">Response Time</div><div class="mc-row"><span class="mc-before">Hours</span><span class="mc-arrow">→</span><span class="mc-after">&lt;2 min</span></div></div>
-          <div class="metric-card"><div class="mc-label">Ad Reach</div><div class="mc-row"><span class="mc-before">3K</span><span class="mc-arrow">→</span><span class="mc-after">40K+</span></div></div>
-        </div>
-      </div>
-      <div class="ba-text reveal rd2">
-        <div class="tag-pill" style="margin-bottom:18px;">📊 Client Results</div>
-        <h2>Strategy Changes<br>Everything</h2>
-        <p>Most businesses waste budget on poorly structured campaigns with no automated follow-up. The full pipeline changes the equation — not just the ads.</p>
-        <div class="ba-stat-row">
-          <div class="ba-stat"><div class="ba-stat-num green">↓75%</div><div class="ba-stat-label">CPL Reduction</div></div>
-          <div class="ba-stat"><div class="ba-stat-num">5×</div><div class="ba-stat-label">More Leads Monthly</div></div>
-          <div class="ba-stat"><div class="ba-stat-num green">+40%</div><div class="ba-stat-label">Revenue Growth</div></div>
-        </div>
-        <a href="#contact" class="btn btn-solid btn-lg mag-btn">Apply This to My Business →</a>
-      </div>
-    </div>
-  </div>
-</section>
+
 
 <!-- ═══ PRICING ═══ -->
 <section class="pricing-section" id="pricing">
@@ -2973,28 +3307,81 @@ if (ph) {
 }
 
 /* ════════════════════════════════════════
-   BEFORE / AFTER SLIDER
+   MOBILE PIPELINE — auto step-through
 ════════════════════════════════════════ */
 (function () {
-  const cont = document.getElementById('slider-cont');
-  const handle = document.getElementById('slider-handle');
-  const before = document.getElementById('sp-before');
-  const after = document.getElementById('sp-after');
-  if (!cont || !handle) return;
-  let dragging = false;
-  function setSlider(p) {
-    p = Math.max(8, Math.min(92, p));
-    handle.style.left = p + '%';
-    before.style.width = p + '%';
-    after.style.left = p + '%';
+  const steps = document.querySelectorAll('.mp-step');
+  if (!steps.length) return;
+
+  // Observe mobile pipeline entering viewport
+  const mpObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      runMobilePipeline();
+      mpObs.unobserve(e.target);
+    });
+  }, { threshold: 0.15 });
+
+  const mp = document.getElementById('mobile-pipeline');
+  if (mp) mpObs.observe(mp);
+
+  function runMobilePipeline() {
+    steps.forEach((step, i) => {
+      // Stagger reveal
+      setTimeout(() => {
+        step.classList.add('mp-visible');
+        setTimeout(() => step.classList.add('mp-active'), 150);
+      }, i * 320);
+    });
+
+    // Loop: highlight active step every 1.8s
+    let current = 0;
+    setTimeout(() => {
+      setInterval(() => {
+        steps.forEach(s => s.classList.remove('mp-active'));
+        steps[current].classList.add('mp-active');
+        current = (current + 1) % steps.length;
+      }, 1800);
+    }, steps.length * 320 + 400);
   }
-  handle.addEventListener('mousedown', e => { dragging = true; e.preventDefault(); });
-  handle.addEventListener('touchstart', () => dragging = true, { passive: true });
-  document.addEventListener('mousemove', e => { if (!dragging) return; const r = cont.getBoundingClientRect(); setSlider((e.clientX - r.left) / r.width * 100); });
-  document.addEventListener('touchmove', e => { if (!dragging) return; const r = cont.getBoundingClientRect(); setSlider((e.touches[0].clientX - r.left) / r.width * 100); }, { passive: true });
-  document.addEventListener('mouseup', () => dragging = false);
-  document.addEventListener('touchend', () => dragging = false);
-  setSlider(50);
+})();
+
+/* ════════════════════════════════════════
+   MOBILE SHIMMER + SLIDE-IN FOR CARDS
+════════════════════════════════════════ */
+(function () {
+  if (window.innerWidth > 640) return;
+
+  // Add shimmer to surface cards
+  document.querySelectorAll('.kpi-mini, .tl-card, .why-card, .tcard, .case-card').forEach((el, i) => {
+    el.classList.add('mob-shimmer');
+    // Alternate slide directions
+    el.classList.remove('reveal');
+    el.classList.add(i % 2 === 0 ? 'slide-left' : 'slide-right');
+  });
+
+  // Add num-glow to counter values
+  document.querySelectorAll('.kpi-mini-val, .trust-num, .ba-stat-num').forEach(el => {
+    el.classList.add('num-glow-anim');
+  });
+
+  // Observer for slide-in/pop-up
+  const slideObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('vis');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.slide-left, .slide-right, .pop-up').forEach(el => slideObs.observe(el));
+
+  // Make check-items pop-up on mobile
+  document.querySelectorAll('.check-item').forEach(el => {
+    el.classList.remove('reveal');
+    el.classList.add('pop-up');
+    slideObs.observe(el);
+  });
 })();
 
 /* ════════════════════════════════════════
